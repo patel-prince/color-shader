@@ -1,0 +1,248 @@
+/* Color Picker Component Styles */
+.colorPicker {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  width: 100%;
+}
+
+/* Saturation/Brightness Picker */
+.saturationPicker {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  cursor: crosshair;
+  border: var(--border-width) solid var(--border-color);
+}
+
+.saturationBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.saturationWhite {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, #fff, transparent);
+}
+
+.saturationBlack {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, #000, transparent);
+}
+
+.saturationHandle {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--white);
+  border-radius: var(--border-radius-full);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Color Preview Section */
+.colorPreviewSection {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.colorPreview {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--border-radius-md);
+  border: 2px solid var(--border-color);
+  flex-shrink: 0;
+}
+
+/* Hue Slider */
+.hueSlider {
+  position: relative;
+  flex: 1;
+  height: 20px;
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  cursor: pointer;
+  border: var(--border-width) solid var(--border-color);
+}
+
+.hueGradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    #ff0000 0%,
+    #ffff00 16.67%,
+    #00ff00 33.33%,
+    #00ffff 50%,
+    #0000ff 66.67%,
+    #ff00ff 83.33%,
+    #ff0000 100%
+  );
+}
+
+.hueHandle {
+  position: absolute;
+  top: 50%;
+  width: 4px;
+  height: 100%;
+  background: var(--white);
+  border: 1px solid var(--gray-700);
+  box-shadow: 0 0 0 1px var(--white), 0 2px 4px rgba(0, 0, 0, 0.1);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  border-radius: var(--border-radius-sm);
+}
+
+/* Color Value Inputs */
+.colorValues {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.colorValue {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.colorValueInput {
+  width: 100%;
+  padding: var(--spacing-xs);
+  border: var(--border-width) solid var(--border-color);
+  border-radius: var(--border-radius-md);
+  background: var(--white);
+  font-family: "Monaco", "Consolas", "Courier New", monospace;
+  font-size: 12px;
+  color: var(--gray-800);
+  text-align: center;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.colorValueInput:hover {
+  border-color: var(--gray-400);
+}
+
+.colorValueInput:focus {
+  outline: none;
+  border-color: var(--gray-500);
+  background: var(--gray-50);
+}
+
+.colorValueInput.invalid {
+  border-color: #ef4444;
+  background: #fef2f2;
+}
+
+.colorValueInput.invalid:focus {
+  border-color: #dc2626;
+  background: #fef2f2;
+}
+
+.colorValueLabel {
+  font-size: 11px;
+  color: var(--gray-500);
+  font-weight: 600;
+  text-align: left;
+  letter-spacing: 0.5px;
+  margin-bottom: 2px;
+}
+
+/* Color Scales */
+.colorPickerContainer {
+  display: flex;
+  gap: var(--spacing-lg);
+  width: 100%;
+}
+
+.colorPickerMain {
+  flex: 0 0 280px;
+}
+
+.colorScalesContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.colorScale {
+  width: 100%;
+}
+
+.colorScaleTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gray-700);
+  margin: 0 0 var(--spacing-sm) 0;
+}
+
+.colorScaleGrid {
+  display: flex;
+  flex-direction: row;
+  gap: var(--spacing-xs);
+  flex-wrap: wrap;
+}
+
+.colorScaleItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 6px;
+  border-radius: var(--border-radius-sm);
+  transition: background-color 0.2s ease;
+  flex: 1;
+  min-width: 60px;
+}
+
+.colorScaleItem:hover {
+  background-color: var(--gray-50);
+}
+
+.colorScaleSwatch {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--border-radius-md);
+  border: var(--border-width) solid var(--border-color);
+  flex-shrink: 0;
+}
+
+.colorScaleLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  align-items: center;
+  text-align: center;
+}
+
+.colorScaleLevel {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--gray-600);
+}
+
+.colorScaleHex {
+  font-size: 10px;
+  font-family: "Monaco", "Consolas", "Courier New", monospace;
+  color: var(--gray-500);
+  text-transform: uppercase;
+}
