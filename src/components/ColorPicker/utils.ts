@@ -172,7 +172,7 @@ export const generateMixedScale = (baseRgb: RGB): Record<number, string> => {
       let ratio: number;
       switch (level) {
         case 50:
-          ratio = 0.95; // Very light
+          ratio = 0.93; // Very light
           break;
         case 100:
           ratio = 0.85; // Light
@@ -242,39 +242,39 @@ export const generateHslScale = (baseRgb: RGB): Record<number, string> => {
 
     if (level === 50) {
       lightness = 96;
-      saturation = Math.min(saturation, 18);
+      saturation = Math.min(saturation, 30);
     } else if (level === 100) {
       lightness = 90;
-      saturation = Math.min(saturation, 28);
+      saturation = Math.min(saturation, 40);
     } else if (level === 200) {
       lightness = 81;
-      saturation = Math.min(saturation, 42);
+      saturation = Math.min(saturation, 55);
     } else if (level === 300) {
       lightness = 72;
-      saturation = Math.min(saturation, 58);
+      saturation = Math.min(saturation, 70);
     } else if (level === 400) {
       lightness = Math.min(baseHsl.l * 1.25, 68);
-      saturation = Math.min(saturation, 72);
+      saturation = Math.min(saturation, 85);
     } else if (level === 500) {
       lightness = Math.min(baseHsl.l * 1.12, 62);
-      saturation = Math.min(baseHsl.s * 0.95, 100);
+      saturation = Math.min(baseHsl.s * 0.98, 95);
     } else if (level === 600) {
       // Base color position
       lightness = baseHsl.l;
       saturation = baseHsl.s;
     } else if (level === 700) {
-      lightness = Math.max(baseHsl.l * 0.85, 35);
-      saturation = Math.min(baseHsl.s * 1.1, 100);
+      lightness = Math.min(baseHsl.l * 0.75, Math.max(baseHsl.l - 15, 8));
+      saturation = Math.min(baseHsl.s * 1.08, 95);
     } else if (level === 800) {
-      lightness = Math.max(baseHsl.l * 0.7, 25);
-      saturation = Math.min(baseHsl.s * 1.15, 100);
+      lightness = Math.min(baseHsl.l * 0.7, Math.max(baseHsl.l - 15, 6));
+      saturation = Math.min(baseHsl.s * 1.15, 95);
     } else if (level === 900) {
-      lightness = Math.max(baseHsl.l * 0.55, 15);
-      saturation = Math.min(baseHsl.s * 1.2, 100);
+      lightness = Math.min(baseHsl.l * 0.55, Math.max(baseHsl.l - 20, 4));
+      saturation = Math.min(baseHsl.s * 1.2, 95);
     } else {
       // 950
-      lightness = Math.max(baseHsl.l * 0.4, 8);
-      saturation = Math.min(baseHsl.s * 1.25, 100);
+      lightness = Math.min(baseHsl.l * 0.4, Math.max(baseHsl.l - 25, 2));
+      saturation = Math.min(baseHsl.s * 1.25, 95);
     }
 
     // Convert back to RGB and then to hex

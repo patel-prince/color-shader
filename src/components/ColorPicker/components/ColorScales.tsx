@@ -7,15 +7,30 @@ import styles from "../ColorPicker.module.css";
 interface ColorScalesProps {
   color: string; // hex color string
   className?: string;
+  onShowCssVars?: (scaleType: "mixed" | "hsl") => void;
 }
 
-const ColorScales: React.FC<ColorScalesProps> = ({ color, className = "" }) => {
+const ColorScales: React.FC<ColorScalesProps> = ({
+  color,
+  className = "",
+  onShowCssVars,
+}) => {
   const rgb: RGB = hexToRgb(color);
 
   return (
     <div className={`${styles.colorScalesContainer} ${className}`}>
-      <ColorScale title="Mixed Scale" baseRgb={rgb} type="mixed" />
-      <ColorScale title="HSL Scale" baseRgb={rgb} type="hsl" />
+      <ColorScale
+        title="Mixed Scale"
+        baseRgb={rgb}
+        type="mixed"
+        onShowCssVars={onShowCssVars}
+      />
+      <ColorScale
+        title="HSL Scale"
+        baseRgb={rgb}
+        type="hsl"
+        onShowCssVars={onShowCssVars}
+      />
     </div>
   );
 };
