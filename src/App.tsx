@@ -118,6 +118,20 @@ const App = () => {
   );
   const [variablePrefix, setVariablePrefix] = useState("primary");
 
+  // Prevent body scrolling when modal is open
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+
+    // Cleanup on unmount
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isModalOpen]);
+
   const handleShowCssVars = (scaleType: "mixed" | "hsl") => {
     setModalScaleType(scaleType);
     setIsModalOpen(true);
