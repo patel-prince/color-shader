@@ -11,22 +11,26 @@ interface ColorPreviewProps {
   onHueChange: (h: number) => void;
 }
 
-const ColorPreview: React.FC<ColorPreviewProps> = ({
-  rgb,
-  hsv,
-  onHueChange,
-}) => {
-  return (
-    <div className={styles.colorPreviewSection}>
-      <div
-        className={styles.colorPreview}
-        style={{
-          backgroundColor: rgbToHex(rgb.r, rgb.g, rgb.b),
-        }}
-      />
-      <HueSlider hsv={hsv} onChange={onHueChange} />
-    </div>
-  );
-};
+/**
+ * ColorPreview component displays the current color and hue slider
+ * Memoized to prevent unnecessary re-renders when parent state changes
+ */
+const ColorPreview: React.FC<ColorPreviewProps> = React.memo(
+  ({ rgb, hsv, onHueChange }) => {
+    return (
+      <div className={styles.colorPreviewSection}>
+        <div
+          className={styles.colorPreview}
+          style={{
+            backgroundColor: rgbToHex(rgb.r, rgb.g, rgb.b),
+          }}
+        />
+        <HueSlider hsv={hsv} onChange={onHueChange} />
+      </div>
+    );
+  }
+);
+
+ColorPreview.displayName = "ColorPreview";
 
 export default ColorPreview;

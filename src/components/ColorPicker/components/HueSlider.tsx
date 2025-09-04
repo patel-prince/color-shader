@@ -8,7 +8,11 @@ interface HueSliderProps {
   onChange: (h: number) => void;
 }
 
-const HueSlider: React.FC<HueSliderProps> = ({ hsv, onChange }) => {
+/**
+ * HueSlider component provides hue selection with rainbow gradient
+ * Memoized to prevent re-renders when other color properties change
+ */
+const HueSlider: React.FC<HueSliderProps> = React.memo(({ hsv, onChange }) => {
   const hueRef = useRef<HTMLDivElement>(null);
 
   const updateHue = (clientX: number) => {
@@ -26,11 +30,49 @@ const HueSlider: React.FC<HueSliderProps> = ({ hsv, onChange }) => {
     onDrag: (clientX) => updateHue(clientX),
   });
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    const step = e.shiftKey ? 10 : 1;
+    let newH = hsv.h;
+
+    switch (e.key) {
+      case "ArrowLeft":
+      case "ArrowDown":
+        e.preventDefault();
+        newH = Math.max(0, hsv.h - step);
+        break;
+      case "ArrowRight":
+      case "ArrowUp":
+        e.preventDefault();
+        newH = Math.min(360, hsv.h + step);
+        break;
+      case "Home":
+        e.preventDefault();
+        newH = 0;
+        break;
+      case "End":
+        e.preventDefault();
+        newH = 360;
+        break;
+      default:
+        return;
+    }
+
+    onChange(newH);
+  };
+
   return (
     <div
       className={styles.hueSlider}
       ref={hueRef}
       onMouseDown={handleMouseDown}
+      onKeyDown={handleKeyDown}
+      tabIndex={0}
+      role="slider"
+      aria-label="Color hue"
+      aria-valuetext={`Hue ${hsv.h} degrees`}
+      aria-valuemin={0}
+      aria-valuemax={360}
+      aria-valuenow={hsv.h}
     >
       <div className={styles.hueGradient} />
       <div
@@ -39,6 +81,8 @@ const HueSlider: React.FC<HueSliderProps> = ({ hsv, onChange }) => {
       />
     </div>
   );
-};
+});
+
+HueSlider.displayName = "HueSlider";
 
 export default HueSlider;

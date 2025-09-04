@@ -1,6 +1,18 @@
 import type { RGB, HSV, HSL } from "./types";
 
-// Convert HEX to RGB
+/**
+ * Color Conversion Utilities
+ * High-precision color space conversion functions for professional color picker
+ */
+
+/**
+ * Converts HEX color string to RGB color object
+ * @param hex - HEX color string (with or without # prefix)
+ * @returns RGB color object with r, g, b values (0-255)
+ * @example
+ * hexToRgb('#ff5733') // Returns { r: 255, g: 87, b: 51 }
+ * hexToRgb('ff5733')  // Returns { r: 255, g: 87, b: 51 }
+ */
 export const hexToRgb = (hex: string): RGB => {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   return result
@@ -12,12 +24,28 @@ export const hexToRgb = (hex: string): RGB => {
     : { r: 0, g: 0, b: 0 };
 };
 
-// Convert RGB to HEX
+/**
+ * Converts RGB color values to HEX color string
+ * @param r - Red value (0-255)
+ * @param g - Green value (0-255)
+ * @param b - Blue value (0-255)
+ * @returns HEX color string with # prefix
+ * @example
+ * rgbToHex(255, 87, 51) // Returns '#ff5733'
+ */
 export const rgbToHex = (r: number, g: number, b: number): string => {
   return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
 };
 
-// Convert RGB to HSV
+/**
+ * Converts RGB color values to HSV color space
+ * @param r - Red value (0-255)
+ * @param g - Green value (0-255)
+ * @param b - Blue value (0-255)
+ * @returns HSV color object with h (0-360), s (0-100), v (0-100)
+ * @example
+ * rgbToHsv(255, 87, 51) // Returns { h: 11, s: 80, v: 100 }
+ */
 export const rgbToHsv = (r: number, g: number, b: number): HSV => {
   r /= 255;
   g /= 255;
@@ -43,7 +71,15 @@ export const rgbToHsv = (r: number, g: number, b: number): HSV => {
   return { h, s: Math.round(s), v: Math.round(v) };
 };
 
-// Convert HSV to RGB
+/**
+ * Converts HSV color values to RGB color space
+ * @param h - Hue value (0-360)
+ * @param s - Saturation value (0-100)
+ * @param v - Value/Brightness value (0-100)
+ * @returns RGB color object with r, g, b values (0-255)
+ * @example
+ * hsvToRgb(11, 80, 100) // Returns { r: 255, g: 87, b: 51 }
+ */
 export const hsvToRgb = (h: number, s: number, v: number): RGB => {
   s /= 100;
   v /= 100;
@@ -155,12 +191,28 @@ export const parseHsl = (hsl: string): RGB | null => {
   return { r, g, b };
 };
 
-// Color scale generation utilities
+/**
+ * Color Scale Generation Utilities
+ * Professional-grade color scale generation with optimal visual progression
+ */
+
+/**
+ * Standard color scale levels used for design systems (50-950)
+ * Base color positioned at level 600 for optimal contrast and usability
+ */
 export const SCALE_LEVELS = [
   50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950,
 ] as const;
 
-// Generate color scale by mixing with white and black (base color at 600)
+/**
+ * Generates a color scale by mixing base color with white (lighter) and black (darker)
+ * This method preserves hue while creating visually consistent brightness progression
+ * @param baseRgb - Base RGB color to generate scale from
+ * @returns Record mapping scale levels to HEX color strings
+ * @example
+ * generateMixedScale({ r: 79, g: 57, b: 246 })
+ * // Returns { 50: '#f3f2ff', 100: '#e6e3ff', ..., 600: '#4f39f6', ..., 950: '#0f0b3d' }
+ */
 export const generateMixedScale = (baseRgb: RGB): Record<number, string> => {
   const scale: Record<number, string> = {};
 
@@ -230,7 +282,15 @@ export const generateMixedScale = (baseRgb: RGB): Record<number, string> => {
   return scale;
 };
 
-// Generate color scale by manipulating HSL values
+/**
+ * Generates a color scale by manipulating HSL lightness and saturation values
+ * This method maintains hue integrity while creating perceptually balanced variations
+ * @param baseRgb - Base RGB color to generate scale from
+ * @returns Record mapping scale levels to HEX color strings
+ * @example
+ * generateHslScale({ r: 79, g: 57, b: 246 })
+ * // Returns { 50: '#f4f2ff', 100: '#e9e5ff', ..., 600: '#4f39f6', ..., 950: '#1a0f5c' }
+ */
 export const generateHslScale = (baseRgb: RGB): Record<number, string> => {
   const scale: Record<number, string> = {};
   const baseHsv = rgbToHsv(baseRgb.r, baseRgb.g, baseRgb.b);
