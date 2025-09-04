@@ -26,7 +26,6 @@ export function HistoryContainer({
   const {
     history,
     favorites,
-    addToHistory,
     addToFavorites,
     removeFromFavorites,
     clearHistory,
