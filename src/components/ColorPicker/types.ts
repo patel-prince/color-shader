@@ -30,3 +30,32 @@ export interface ColorValues {
   rgb: string;
   hsl: string;
 }
+
+// History and Favorites interfaces
+export interface ColorHistoryItem {
+  id: string;
+  hex: string;
+  timestamp: number;
+}
+
+export interface ColorFavoriteItem {
+  id: string;
+  hex: string;
+  name: string;
+  timestamp: number;
+}
+
+export interface ColorHistoryState {
+  history: ColorHistoryItem[];
+  favorites: ColorFavoriteItem[];
+}
+
+export interface ColorHistoryHookReturn {
+  history: ColorHistoryItem[];
+  favorites: ColorFavoriteItem[];
+  addToHistory: (hex: string) => void;
+  addToFavorites: (hex: string, name: string) => void;
+  removeFromFavorites: (id: string) => void;
+  clearHistory: () => void;
+  isFavorite: (hex: string) => boolean;
+}

@@ -1,7 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import ColorPicker, { ColorScales } from "./components/ColorPicker";
 import CSSVarsModal from "./components/Modal/CSSVarsModal";
 import ErrorBoundary from "./components/ErrorBoundary";
+import { HistoryContainer } from "./components/ColorHistory";
+import { useColorHistory } from "./components/ColorPicker/hooks/useColorHistory";
 import {
   hexToRgb,
   generateMixedScale,
@@ -15,6 +17,22 @@ const App = () => {
     null
   );
   const [variablePrefix, setVariablePrefix] = useState("primary");
+
+  // History management
+  const { addToHistory } = useColorHistory();
+  const previousColorRef = useRef(selectedColor);
+
+  // Add color to history when it changes (with debouncing to avoid spam)
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      if (selectedColor !== previousColorRef.current) {
+        addToHistory(selectedColor);
+        previousColorRef.current = selectedColor;
+      }
+    }, 500); // 500ms debounce
+
+    return () => clearTimeout(timeoutId);
+  }, [selectedColor, addToHistory]);
 
   // Prevent body scrolling when modal is open
   useEffect(() => {
@@ -81,7 +99,32 @@ const App = () => {
               showScales={false}
             />
           </ErrorBoundary>
+
+          {/* History/Favorites in accordion format for all screen sizes */}
+          <div className="sidebar-history-section">
+            <ErrorBoundary
+              fallback={
+                <div
+                  style={{
+                    padding: "1rem",
+                    textAlign: "center",
+                    color: "#6b7280",
+                    fontSize: "14px",
+                  }}
+                >
+                  History temporarily unavailable
+                </div>
+              }
+            >
+              <HistoryContainer
+                currentColor={selectedColor}
+                onColorSelect={setSelectedColor}
+                isSidebarView={true}
+              />
+            </ErrorBoundary>
+          </div>
         </aside>
+
         <main className="app-content">
           <h1>Color Scales</h1>
           <ErrorBoundary
