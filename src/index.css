@@ -141,6 +141,7 @@ body {
   align-items: center;
   justify-content: center;
   z-index: 1000;
+  animation: modalOverlayFadeIn 0.2s ease-out;
 }
 
 .modal-content {
@@ -153,6 +154,7 @@ body {
   max-height: 80vh;
   display: flex;
   flex-direction: column;
+  animation: modalContentScaleIn 0.3s ease-out;
 }
 
 .modal-header {
@@ -272,4 +274,54 @@ body {
   background: none;
   padding: 0;
   color: var(--gray-700);
+}
+
+/* Modal Animations */
+@keyframes modalOverlayFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalOverlayFadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes modalContentScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes modalContentScaleOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+/* Modal closing animation classes */
+.modal-overlay.closing {
+  animation: modalOverlayFadeOut 0.2s ease-in forwards;
+}
+
+.modal-content.closing {
+  animation: modalContentScaleOut 0.2s ease-in forwards;
 }

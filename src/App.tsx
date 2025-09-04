@@ -30,7 +30,17 @@ const CssVarsModal: React.FC<CssVarsModalProps> = ({
   generateCssVariables,
 }) => {
   const [isCopied, setIsCopied] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
   const timeoutRef = useRef<number | null>(null);
+
+  const handleClose = () => {
+    setIsClosing(true);
+    // Wait for animation to complete before actually closing
+    setTimeout(() => {
+      setIsClosing(false);
+      onClose();
+    }, 200); // Match the animation duration
+  };
 
   const copyToClipboard = () => {
     if (!scaleType) return;
@@ -63,6 +73,13 @@ const CssVarsModal: React.FC<CssVarsModalProps> = ({
     };
   }, []);
 
+  // Reset closing state when modal opens
+  useEffect(() => {
+    if (isOpen) {
+      setIsClosing(false);
+    }
+  }, [isOpen]);
+
   if (!isOpen || !scaleType) return null;
 
   const cssText = generateCssVariables(
@@ -74,11 +91,17 @@ const CssVarsModal: React.FC<CssVarsModalProps> = ({
   const scaleTitle = scaleType === "mixed" ? "Mixed Scale" : "HSL Scale";
 
   return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+    <div
+      className={`modal-overlay${isClosing ? " closing" : ""}`}
+      onClick={handleClose}
+    >
+      <div
+        className={`modal-content${isClosing ? " closing" : ""}`}
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className="modal-header">
           <h3>{scaleTitle} CSS Variables</h3>
-          <button className="modal-close" onClick={onClose}>
+          <button className="modal-close" onClick={handleClose}>
             ×
           </button>
         </div>
