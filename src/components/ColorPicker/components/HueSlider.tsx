@@ -10,9 +10,9 @@ interface HueSliderProps {
 
 /**
  * HueSlider component provides hue selection with rainbow gradient
- * Memoized to prevent re-renders when other color properties change
+ * Optimized automatically by React Compiler
  */
-const HueSlider: React.FC<HueSliderProps> = React.memo(({ hsv, onChange }) => {
+const HueSlider: React.FC<HueSliderProps> = ({ hsv, onChange }) => {
   const hueRef = useRef<HTMLDivElement>(null);
 
   const updateHue = (clientX: number) => {
@@ -81,8 +81,6 @@ const HueSlider: React.FC<HueSliderProps> = React.memo(({ hsv, onChange }) => {
       />
     </div>
   );
-});
-
-HueSlider.displayName = "HueSlider";
+};
 
 export default HueSlider;
