@@ -1,137 +1,11 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import ColorPicker, { ColorScales } from "./components/ColorPicker";
+import CSSVarsModal from "./components/Modal/CSSVarsModal";
 import {
   hexToRgb,
   generateMixedScale,
   generateHslScale,
 } from "./components/ColorPicker/utils";
-
-interface CssVarsModalProps {
-  isOpen: boolean;
-  scaleType: "mixed" | "hsl" | null;
-  selectedColor: string;
-  variablePrefix: string;
-  onClose: () => void;
-  onPrefixChange: (prefix: string) => void;
-  generateCssVariables: (
-    color: string,
-    scaleType: "mixed" | "hsl",
-    prefix: string
-  ) => string;
-}
-
-const CssVarsModal: React.FC<CssVarsModalProps> = ({
-  isOpen,
-  scaleType,
-  selectedColor,
-  variablePrefix,
-  onClose,
-  onPrefixChange,
-  generateCssVariables,
-}) => {
-  const [isCopied, setIsCopied] = useState(false);
-  const [isClosing, setIsClosing] = useState(false);
-  const timeoutRef = useRef<number | null>(null);
-
-  const handleClose = () => {
-    setIsClosing(true);
-    // Wait for animation to complete before actually closing
-    setTimeout(() => {
-      setIsClosing(false);
-      onClose();
-    }, 200); // Match the animation duration
-  };
-
-  const copyToClipboard = () => {
-    if (!scaleType) return;
-    const cssText = generateCssVariables(
-      selectedColor,
-      scaleType,
-      variablePrefix
-    );
-    navigator.clipboard.writeText(cssText);
-
-    // Clear any existing timeout
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-
-    setIsCopied(true);
-
-    // Set new timeout
-    timeoutRef.current = setTimeout(() => {
-      setIsCopied(false);
-      timeoutRef.current = null;
-    }, 1000);
-  };
-
-  useEffect(() => {
-    return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
-    };
-  }, []);
-
-  // Reset closing state when modal opens
-  useEffect(() => {
-    if (isOpen) {
-      setIsClosing(false);
-    }
-  }, [isOpen]);
-
-  if (!isOpen || !scaleType) return null;
-
-  const cssText = generateCssVariables(
-    selectedColor,
-    scaleType,
-    variablePrefix
-  );
-
-  const scaleTitle = scaleType === "mixed" ? "Mixed Scale" : "HSL Scale";
-
-  return (
-    <div
-      className={`modal-overlay${isClosing ? " closing" : ""}`}
-      onClick={handleClose}
-    >
-      <div
-        className={`modal-content${isClosing ? " closing" : ""}`}
-        onClick={(e) => e.stopPropagation()}
-      >
-        <div className="modal-header">
-          <h3>{scaleTitle} CSS Variables</h3>
-          <button className="modal-close" onClick={handleClose}>
-            ×
-          </button>
-        </div>
-        <div className="modal-body">
-          <div className="css-vars-actions">
-            <div className="prefix-input-container">
-              <label htmlFor="variable-prefix" className="prefix-label">
-                Variable Prefix:
-              </label>
-              <input
-                id="variable-prefix"
-                type="text"
-                value={variablePrefix}
-                onChange={(e) => onPrefixChange(e.target.value)}
-                className="prefix-input"
-                placeholder="color"
-              />
-            </div>
-            <button className="copy-css-btn" onClick={copyToClipboard}>
-              {isCopied ? "Copied!" : "Copy CSS"}
-            </button>
-          </div>
-          <pre className="css-vars-code">
-            <code>{cssText}</code>
-          </pre>
-        </div>
-      </div>
-    </div>
-  );
-};
 
 const App = () => {
   const [selectedColor, setSelectedColor] = useState("#4f39f6");
@@ -196,14 +70,14 @@ const App = () => {
         <h1>Color Scales</h1>
         <ColorScales color={selectedColor} onShowCssVars={handleShowCssVars} />
       </main>
-      <CssVarsModal
+      <CSSVarsModal
         isOpen={isModalOpen}
         scaleType={modalScaleType}
         selectedColor={selectedColor}
         variablePrefix={variablePrefix}
         onClose={() => setIsModalOpen(false)}
         onPrefixChange={setVariablePrefix}
-        generateCssVariables={generateCssVariables}
+        generateCSSVariables={generateCssVariables}
       />
     </div>
   );

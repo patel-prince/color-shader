@@ -1,0 +1,49 @@
+/**
+ * Design System - CSS Custom Properties
+ * Contains all design tokens used throughout the application
+ */
+
+:root {
+  /* Color Palette */
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+  --gray-600: #4b5563;
+  --gray-700: #374151;
+  --gray-800: #1f2937;
+  --gray-900: #111827;
+  --gray-950: #030712;
+
+  --white: #ffffff;
+  --black: #000000;
+
+  /* Semantic Colors */
+  --primary-main: var(--gray-900);
+
+  /* Spacing Scale */
+  --spacing-none: 0;
+  --spacing-xs: 8px;
+  --spacing-sm: 16px;
+  --spacing-md: 24px;
+  --spacing-lg: 32px;
+  --spacing-xl: 40px;
+  --spacing-xxl: 48px;
+
+  /* Border Radius Scale */
+  --border-radius-none: 0;
+  --border-radius-sm: 2px;
+  --border-radius-md: 4px;
+  --border-radius-lg: 6px;
+  --border-radius-xl: 8px;
+  --border-radius-full: 9999px;
+
+  /* Border Properties */
+  --border-color: var(--gray-200);
+  --border-width: 1px;
+
+  /* Layout Constants */
+  --aside-width: 350px;
+}

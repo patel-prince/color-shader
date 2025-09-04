@@ -1,136 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+/**
+ * Modal Component Styles
+ * Contains all modal-related styling with CSS Modules
+ */
 
-:root {
-  --gray-50: #f9fafb;
-  --gray-100: #f3f4f6;
-  --gray-200: #e5e7eb;
-  --gray-300: #d1d5db;
-  --gray-400: #9ca3af;
-  --gray-500: #6b7280;
-  --gray-600: #4b5563;
-  --gray-700: #374151;
-  --gray-800: #1f2937;
-  --gray-900: #111827;
-  --gray-950: #030712;
-
-  --white: #ffffff;
-  --black: #000000;
-
-  --primary-main: var(--gray-900);
-
-  --spacing-none: 0;
-  --spacing-xs: 8px;
-  --spacing-sm: 16px;
-  --spacing-md: 24px;
-  --spacing-lg: 32px;
-  --spacing-xl: 40px;
-  --spacing-xxl: 48px;
-
-  --border-radius-none: 0;
-  --border-radius-sm: 2px;
-  --border-radius-md: 4px;
-  --border-radius-lg: 6px;
-  --border-radius-xl: 8px;
-  --border-radius-full: 9999px;
-
-  --border-color: var(--gray-200);
-  --border-width: 1px;
-
-  --aside-width: 350px;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  font-family: "Roboto", sans-serif;
-}
-
-.app-container {
-  width: 100%;
-  min-height: 100vh;
-  margin: 0;
-  display: flex;
-}
-
-.app-sider {
-  width: var(--aside-width);
-  max-width: 100%;
-  border-right: var(--border-width) solid var(--border-color);
-  padding: var(--spacing-md);
-}
-
-/* Sticky sidebar for screens larger than 500px */
-@media (min-width: 500px) {
-  .app-sider {
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    overflow: hidden;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-  }
-}
-
-.app-content {
-  flex: 1;
-  padding: var(--spacing-md);
-  background-color: var(--gray-50);
-}
-
-/* Ensure proper height behavior for different screen sizes */
-@media (min-width: 500px) {
-  .app-content {
-    min-height: 100vh;
-  }
-}
-
-@media (max-width: 499px) {
-  .app-content {
-    min-height: auto;
-  }
-}
-
-/* Medium screens: Equal width layout for sidebar and content */
-@media (min-width: 500px) and (max-width: 768px) {
-  .app-sider {
-    width: auto;
-    flex: 1;
-  }
-}
-
-/* Small screens: Stack layout with full width sidebar */
-@media (max-width: 499px) {
-  .app-container {
-    flex-direction: column;
-  }
-
-  .app-sider {
-    width: 100%;
-    border-right: none;
-    border-bottom: var(--border-width) solid var(--border-color);
-  }
-
-  .app-content {
-    width: 100%;
-    flex: 1;
-  }
-}
-
-.app-content h1 {
-  color: var(--gray-800);
-  font-size: 24px;
-  font-weight: 600;
-  margin: 0 0 var(--spacing-md) 0;
-}
-
-/* Modal Styles */
-.modal-overlay {
+/* Modal Overlay */
+.overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -144,7 +18,8 @@ body {
   animation: modalOverlayFadeIn 0.2s ease-out;
 }
 
-.modal-content {
+/* Modal Content */
+.content {
   background: var(--white);
   border-radius: var(--border-radius-lg);
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
@@ -157,7 +32,8 @@ body {
   animation: modalContentScaleIn 0.3s ease-out;
 }
 
-.modal-header {
+/* Modal Header */
+.header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -165,14 +41,15 @@ body {
   border-bottom: var(--border-width) solid var(--border-color);
 }
 
-.modal-header h3 {
+.header h3 {
   margin: 0;
   font-size: 18px;
   font-weight: 600;
   color: var(--gray-800);
 }
 
-.modal-close {
+/* Close Button */
+.close {
   background: none;
   border: none;
   font-size: 24px;
@@ -188,12 +65,13 @@ body {
   transition: all 0.2s ease;
 }
 
-.modal-close:hover {
+.close:hover {
   background: var(--gray-100);
   color: var(--gray-700);
 }
 
-.modal-body {
+/* Modal Body */
+.body {
   padding: var(--spacing-lg);
   flex: 1;
   overflow: hidden;
@@ -201,27 +79,28 @@ body {
   flex-direction: column;
 }
 
-.css-vars-actions {
+/* CSS Variables Actions */
+.actions {
   margin-bottom: var(--spacing-md);
   display: flex;
   align-items: end;
   gap: var(--spacing-md);
 }
 
-.prefix-input-container {
+.prefixInputContainer {
   display: flex;
   flex-direction: column;
   gap: 4px;
   flex: 1;
 }
 
-.prefix-label {
+.prefixLabel {
   font-size: 12px;
   font-weight: 500;
   color: var(--gray-600);
 }
 
-.prefix-input {
+.prefixInput {
   padding: var(--spacing-xs) var(--spacing-sm);
   border: var(--border-width) solid var(--border-color);
   border-radius: var(--border-radius-md);
@@ -232,32 +111,34 @@ body {
   height: 34px;
 }
 
-.prefix-input:focus {
+.prefixInput:focus {
   outline: none;
   border-color: var(--gray-400);
   box-shadow: 0 0 0 2px rgba(79, 57, 246, 0.1);
 }
 
-.copy-css-btn {
-  padding: var(--spacing-xs) var(--spacing-sm);
+.copyBtn {
   background: var(--white);
   color: var(--gray-700);
   border: var(--border-width) solid var(--border-color);
   border-radius: var(--border-radius-md);
+  padding: var(--spacing-xs) var(--spacing-sm);
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease;
+  white-space: nowrap;
   width: 100px;
 }
 
-.copy-css-btn:hover {
+.copyBtn:hover {
   background: var(--gray-800);
   border-color: var(--gray-800);
   color: var(--white);
 }
 
-.css-vars-code {
+/* CSS Code Display */
+.code {
   background: var(--gray-50);
   border: var(--border-width) solid var(--border-color);
   border-radius: var(--border-radius-md);
@@ -270,7 +151,7 @@ body {
   margin: 0;
 }
 
-.css-vars-code code {
+.code code {
   background: none;
   padding: 0;
   color: var(--gray-700);
@@ -318,10 +199,10 @@ body {
 }
 
 /* Modal closing animation classes */
-.modal-overlay.closing {
+.overlay.closing {
   animation: modalOverlayFadeOut 0.2s ease-in forwards;
 }
 
-.modal-content.closing {
+.content.closing {
   animation: modalContentScaleOut 0.2s ease-in forwards;
 }

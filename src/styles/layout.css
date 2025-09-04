@@ -1,0 +1,86 @@
+/**
+ * Layout Styles
+ * Contains app-level layout and responsive design rules
+ */
+
+/* App Container */
+.app-container {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+}
+
+/* Sidebar */
+.app-sider {
+  width: var(--aside-width);
+  max-width: 100%;
+  border-right: var(--border-width) solid var(--border-color);
+  padding: var(--spacing-md);
+}
+
+/* Content Area */
+.app-content {
+  flex: 1;
+  padding: var(--spacing-md);
+  background-color: var(--gray-50);
+}
+
+.app-content h1 {
+  color: var(--gray-800);
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0 0 var(--spacing-md) 0;
+}
+
+/* Sticky sidebar for screens larger than 500px */
+@media (min-width: 500px) {
+  .app-sider {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/* Ensure proper height behavior for different screen sizes */
+@media (min-width: 500px) {
+  .app-content {
+    min-height: 100vh;
+  }
+}
+
+@media (max-width: 499px) {
+  .app-content {
+    min-height: auto;
+  }
+}
+
+/* Medium screens: Equal width layout for sidebar and content */
+@media (min-width: 500px) and (max-width: 768px) {
+  .app-sider {
+    width: auto;
+    flex: 1;
+  }
+}
+
+/* Small screens: Stack layout with full width sidebar */
+@media (max-width: 499px) {
+  .app-container {
+    flex-direction: column;
+  }
+
+  .app-sider {
+    width: 100%;
+    border-right: none;
+    border-bottom: var(--border-width) solid var(--border-color);
+  }
+
+  .app-content {
+    width: 100%;
+    flex: 1;
+  }
+}
