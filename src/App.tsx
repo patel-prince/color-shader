@@ -5,6 +5,7 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import { HistoryContainer } from "./components/ColorHistory";
 import { SemanticPalette } from "./components/SemanticColors";
 import { useColorHistory } from "./components/ColorPicker/hooks/useColorHistory";
+import { Logo } from "./components/Logo";
 
 const App = () => {
   const [selectedColor, setSelectedColor] = useState("#4f39f6");
@@ -102,7 +103,7 @@ const App = () => {
 
         <main className="app-content">
           <div className="app-content-header">
-            <h1 className="app-title">Design System</h1>
+            <Logo size="lg" className="app-title" />
             <button
               className="export-button"
               onClick={() => handleShowSemanticModal("primary")}
