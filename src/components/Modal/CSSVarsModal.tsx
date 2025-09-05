@@ -22,7 +22,7 @@ const CSSVarsModal: React.FC<CSSVarsModalProps> = ({
   generateCSSVariables,
 }) => {
   const [isCopied, setIsCopied] = useState(false);
-  const timeoutRef = useRef<number | null>(null);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const copyToClipboard = () => {
     if (!scaleType) return;

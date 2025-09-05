@@ -31,7 +31,7 @@ const SemanticColorsModal: React.FC<SemanticColorsModalProps> = ({
   onPrefixChange,
 }) => {
   const [isCopied, setIsCopied] = useState(false);
-  const timeoutRef = useRef<number | null>(null);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const { exportCssVariables } = useSemanticColors(
     selectedColor,
     selectedGrayScale

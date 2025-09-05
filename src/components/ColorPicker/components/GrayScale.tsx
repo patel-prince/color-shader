@@ -26,7 +26,7 @@ const GrayScale: React.FC<GrayScaleProps> = ({
   );
   const scale = generateMixedScale(grayRgb);
   const [copiedColor, setCopiedColor] = useState<string | null>(null);
-  const timeoutRef = useRef<number | null>(null);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const copyToClipboard = async (hexColor: string, level: number) => {
     try {

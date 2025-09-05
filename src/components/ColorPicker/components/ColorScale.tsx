@@ -20,7 +20,7 @@ const ColorScale: React.FC<ColorScaleProps> = ({
 }) => {
   const scale = generateMixedScale(baseRgb);
   const [copiedColor, setCopiedColor] = useState<string | null>(null);
-  const timeoutRef = useRef<number | null>(null);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const copyToClipboard = async (hexColor: string, level: number) => {
     try {
