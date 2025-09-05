@@ -48,6 +48,15 @@ export default function HomePage() {
   const handleShowSemanticModal = (prefix: string) => {
     setSemanticPrefix(prefix);
     setIsSemanticModalOpen(true);
+    
+    // Track Export CSS button click
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'export_css_clicked', {
+        event_category: 'engagement',
+        event_label: 'export_button',
+        value: 1
+      });
+    }
   };
 
   const handleCloseSemanticModal = () => {
