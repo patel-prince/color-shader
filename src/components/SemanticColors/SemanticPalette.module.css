@@ -1,0 +1,225 @@
+/**
+ * SemanticPalette Component Styles
+ * Auto-generated design system colors display
+ */
+
+/* Main Container */
+.semanticPalette {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  background: var(--white);
+  border-radius: var(--border-radius-lg);
+  border: var(--border-width) solid var(--border-color);
+  padding: var(--spacing-md);
+}
+
+/* Header */
+.header {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--gray-800);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: var(--gray-600);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.baseColor {
+  font-family: "Monaco", "Consolas", "Courier New", monospace;
+  font-weight: 600;
+  color: var(--gray-800);
+  background: var(--gray-100);
+  padding: 2px 6px;
+  border-radius: var(--border-radius-md);
+}
+
+.exportButton {
+  padding: var(--spacing-xs);
+  background: var(--gray-900);
+  color: var(--white);
+  border: none;
+  border-radius: var(--border-radius-md);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  white-space: nowrap;
+  min-width: 70px;
+}
+
+.exportButton:hover {
+  background: var(--gray-800);
+}
+
+/* Categories Container */
+.categoriesContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.categorySection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.categoryTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gray-800);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.categorySubtitle {
+  font-size: 12px;
+  color: var(--gray-600);
+  margin: 0;
+  line-height: 1.2;
+}
+
+/* Colors Grid */
+.colorsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--spacing-xs);
+}
+
+/* Color Item */
+.colorItem {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: var(--white);
+}
+
+.colorItem:hover {
+  transform: translateY(-2px);
+}
+
+/* Color Swatch */
+.colorSwatch {
+  position: relative;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--border-radius-md);
+  border: var(--border-width) solid var(--border-color);
+}
+
+.copiedOverlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.7);
+  color: var(--white);
+  padding: 4px 8px;
+  border-radius: var(--border-radius-md);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  animation: fadeInScale 0.2s ease-out;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* Color Info */
+.colorInfo {
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.colorName {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gray-800);
+  line-height: 1.3;
+}
+
+.colorCode {
+  font-size: 11px;
+  font-family: "Monaco", "Consolas", "Courier New", monospace;
+  color: var(--gray-600);
+  line-height: 1.3;
+}
+
+.colorUsage {
+  font-size: 10px;
+  color: var(--gray-500);
+  line-height: 1.3;
+  margin-top: 2px;
+}
+
+/* Responsive Design */
+@media (max-width: 767px) {
+  .semanticPalette {
+    padding: var(--spacing-md);
+    gap: var(--spacing-md);
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--spacing-sm);
+  }
+
+  .colorsGrid {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: var(--spacing-xs);
+  }
+
+  .colorSwatch {
+    height: 60px;
+  }
+
+  .exportButton {
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1119px) {
+  .colorsGrid {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: var(--spacing-xs);
+  }
+}
+
+@media (min-width: 1120px) {
+  .colorsGrid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: var(--spacing-xs);
+  }
+}

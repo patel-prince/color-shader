@@ -2,16 +2,21 @@ import React from "react";
 import type { RGB } from "../types";
 import { hexToRgb } from "../utils";
 import ColorScale from "./ColorScale";
+import GrayScale from "./GrayScale";
 import styles from "../ColorPicker.module.css";
 
 interface ColorScalesProps {
   color: string; // hex color string
+  selectedGrayScale: string;
+  onGrayScaleChange: (grayScale: string) => void;
   className?: string;
-  onShowCssVars?: (scaleType: "mixed" | "hsl") => void;
+  onShowCssVars?: (scaleType: "mixed") => void;
 }
 
 const ColorScales: React.FC<ColorScalesProps> = ({
   color,
+  selectedGrayScale,
+  onGrayScaleChange,
   className = "",
   onShowCssVars,
 }) => {
@@ -19,16 +24,14 @@ const ColorScales: React.FC<ColorScalesProps> = ({
 
   return (
     <div className={`${styles.colorScalesContainer} ${className}`}>
-      <ColorScale
-        title="Mixed Scale"
-        baseRgb={rgb}
-        type="mixed"
-        onShowCssVars={onShowCssVars}
+      <GrayScale
+        selectedGrayScale={selectedGrayScale}
+        onGrayScaleChange={onGrayScaleChange}
       />
       <ColorScale
-        title="HSL Scale"
+        title="Color Scale"
         baseRgb={rgb}
-        type="hsl"
+        type="mixed"
         onShowCssVars={onShowCssVars}
       />
     </div>

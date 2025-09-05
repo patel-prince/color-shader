@@ -1,0 +1,346 @@
+/**
+ * ColorFavorites Component Styles
+ * Responsive design for favorites section
+ */
+
+/* Container */
+.favoritesContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-sm);
+  min-height: 24px; /* Ensure consistent height whether button is present or not */
+}
+
+.title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gray-800);
+  margin: 0;
+  flex: 1;
+}
+
+.addButton {
+  padding: 4px var(--spacing-xs);
+  border: var(--border-width) solid var(--gray-300);
+  border-radius: var(--border-radius-md);
+  background: var(--white);
+  color: var(--gray-700);
+  font-size: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.addButton:hover {
+  background: var(--gray-50);
+  color: var(--gray-900);
+  border-color: var(--gray-400);
+}
+
+/* Add Form */
+.addForm {
+  border: var(--border-width) solid var(--border-color);
+  border-radius: var(--border-radius-md);
+  background: var(--white);
+  padding: var(--spacing-xs);
+  gap: var(--spacing-xs);
+  display: flex;
+  flex-direction: column;
+}
+
+.addFormPreview {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding-bottom: var(--spacing-xs);
+  border-bottom: var(--border-width) solid var(--border-color);
+}
+
+.previewSwatch {
+  width: 20px;
+  height: 20px;
+  border-radius: var(--border-radius-md);
+  border: var(--border-width) solid var(--gray-200);
+  flex-shrink: 0;
+}
+
+.previewCode {
+  font-family: "Courier New", monospace;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gray-700);
+}
+
+.addFormInput {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.nameInput {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border: var(--border-width) solid var(--border-color);
+  border-radius: var(--border-radius-md);
+  font-size: 14px;
+  color: var(--gray-800);
+  background: var(--white);
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.nameInput:focus {
+  border-color: var(--gray-400);
+}
+
+.addFormButtons {
+  display: flex;
+  gap: var(--spacing-xs);
+}
+
+.saveButton,
+.cancelButton {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border: var(--border-width) solid;
+  border-radius: var(--border-radius-md);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex: 1;
+}
+
+.saveButton {
+  background: var(--gray-900);
+  border-color: var(--gray-900);
+  color: var(--white);
+}
+
+.saveButton:hover:not(:disabled) {
+  background: var(--gray-800);
+  border-color: var(--gray-800);
+}
+
+.saveButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.cancelButton {
+  background: var(--white);
+  border-color: var(--border-color);
+  color: var(--gray-600);
+}
+
+.cancelButton:hover {
+  background: var(--gray-50);
+  border-color: var(--gray-300);
+  color: var(--gray-800);
+}
+
+/* Empty State */
+.emptyState {
+  text-align: center;
+  padding: var(--spacing-md) var(--spacing-sm);
+  color: var(--gray-500);
+}
+
+.emptyIcon {
+  font-size: 24px;
+  margin-bottom: var(--spacing-xs);
+  opacity: 0.7;
+}
+
+.emptyText {
+  font-size: 12px;
+  font-weight: 500;
+  margin: 0 0 2px 0;
+  color: var(--gray-600);
+}
+
+.emptySubtext {
+  font-size: 10px;
+  margin: 0;
+  color: var(--gray-500);
+}
+
+/* Favorites Grid */
+.favoritesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+
+.favoriteItem {
+  position: relative;
+  width: 100%;
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  background: var(--white);
+  border: var(--border-width) solid var(--gray-200);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.2s ease;
+}
+
+.favoriteItem:hover {
+  transform: translateY(-2px) scale(1.02);
+  border-color: var(--gray-300);
+}
+
+.favoriteColor {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  cursor: pointer;
+}
+
+/* Color Swatch */
+.colorSwatch {
+  position: relative;
+  width: 100%;
+  height: 45px;
+  overflow: hidden;
+}
+
+.copiedOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(34, 197, 94, 0.9);
+  color: var(--white);
+  font-size: 10px;
+  font-weight: 600;
+  animation: copiedPulse 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(2px);
+}
+
+@keyframes copiedPulse {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Color Info */
+.colorInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: 6px var(--spacing-xs) var(--spacing-xs) var(--spacing-xs);
+  min-height: 0;
+  flex: 1;
+}
+
+.colorName {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--gray-800);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.3;
+  margin-bottom: 1px;
+}
+
+.colorCode {
+  font-family: "Courier New", monospace;
+  font-size: 9px;
+  color: var(--gray-500);
+  line-height: 1.1;
+  font-weight: 500;
+}
+
+/* Remove Button */
+.removeButton {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 16px;
+  height: 16px;
+  border: none;
+  border-radius: var(--border-radius-md);
+  background: rgba(0, 0, 0, 0.6);
+  color: var(--white);
+  font-size: 12px;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  z-index: 1;
+  transform: scale(0.8);
+}
+
+.favoriteItem:hover .removeButton {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.removeButton:hover {
+  background: rgba(220, 38, 38, 0.9);
+  transform: scale(1.15);
+}
+
+/* Responsive Design */
+@media (max-width: 499px) {
+  /* Mobile: Compact and elegant */
+  .colorSwatch {
+    height: 36px;
+  }
+
+  .colorInfo {
+    padding: 4px 6px 6px 6px;
+  }
+
+  .colorName {
+    font-size: 10px;
+    line-height: 1.2;
+  }
+
+  .colorCode {
+    font-size: 8px;
+  }
+
+  .removeButton {
+    width: 14px;
+    height: 14px;
+    font-size: 10px;
+    top: 1px;
+    right: 1px;
+  }
+}
+
+@media (min-width: 500px) {
+  /* Desktop: Elegant proportions */
+  .colorSwatch {
+    height: 50px;
+  }
+
+  .colorInfo {
+    padding: 8px var(--spacing-xs) var(--spacing-xs) var(--spacing-xs);
+  }
+}

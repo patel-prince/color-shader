@@ -22,8 +22,7 @@
 .content {
   background: var(--white);
   border-radius: var(--border-radius-lg);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
-    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  border: var(--border-width) solid var(--gray-200);
   max-width: 600px;
   width: 90vw;
   max-height: 80vh;
@@ -37,7 +36,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--spacing-lg);
+  padding: var(--spacing-md);
   border-bottom: var(--border-width) solid var(--border-color);
 }
 
@@ -61,7 +60,7 @@
   justify-content: center;
   width: 32px;
   height: 32px;
-  border-radius: var(--border-radius-sm);
+  border-radius: var(--border-radius-md);
   transition: all 0.2s ease;
 }
 
@@ -72,7 +71,7 @@
 
 /* Modal Body */
 .body {
-  padding: var(--spacing-lg);
+  padding: var(--spacing-md);
   flex: 1;
   overflow: hidden;
   display: flex;
@@ -83,8 +82,9 @@
 .actions {
   margin-bottom: var(--spacing-md);
   display: flex;
-  align-items: end;
+  align-items: flex-end;
   gap: var(--spacing-md);
+  flex-wrap: wrap;
 }
 
 .prefixInputContainer {
@@ -114,27 +114,48 @@
 .prefixInput:focus {
   outline: none;
   border-color: var(--gray-400);
-  box-shadow: 0 0 0 2px rgba(79, 57, 246, 0.1);
 }
 
 .copyBtn {
-  background: var(--white);
-  color: var(--gray-700);
-  border: var(--border-width) solid var(--border-color);
+  background: var(--gray-900);
+  color: var(--white);
+  border: none;
   border-radius: var(--border-radius-md);
   padding: var(--spacing-xs) var(--spacing-sm);
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease;
   white-space: nowrap;
   width: 100px;
 }
 
 .copyBtn:hover {
   background: var(--gray-800);
-  border-color: var(--gray-800);
-  color: var(--white);
+}
+
+/* Responsive styles for small screens */
+@media (max-width: 480px) {
+  .actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--spacing-sm);
+  }
+
+  .copyBtn {
+    width: 100%;
+    min-width: auto;
+  }
+
+  .content {
+    width: 95vw;
+    max-height: 85vh;
+  }
+
+  .header,
+  .body {
+    padding: var(--spacing-sm);
+  }
 }
 
 /* CSS Code Display */

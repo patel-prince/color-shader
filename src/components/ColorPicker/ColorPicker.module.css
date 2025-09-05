@@ -6,12 +6,10 @@
   width: 100%;
 }
 
-/* Constrain ColorPicker in sticky sidebar */
+/* Allow ColorPicker to flow naturally in sidebar */
 @media (min-width: 500px) {
   .colorPicker {
-    height: 100%;
-    max-height: 100%;
-    overflow: hidden;
+    flex-shrink: 0;
   }
 }
 
@@ -19,7 +17,7 @@
 .saturationPicker {
   position: relative;
   width: 100%;
-  aspect-ratio: 16/12;
+  aspect-ratio: 16/10;
   border-radius: var(--border-radius-lg);
   overflow: hidden;
   cursor: crosshair;
@@ -60,7 +58,6 @@
   border-radius: var(--border-radius-full);
   transform: translate(-50%, -50%);
   pointer-events: none;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
 }
 
 /* Color Preview Section */
@@ -114,10 +111,9 @@
   height: 100%;
   background: var(--white);
   border: 1px solid var(--gray-700);
-  box-shadow: 0 0 0 1px var(--white), 0 2px 4px rgba(0, 0, 0, 0.1);
   transform: translate(-50%, -50%);
   pointer-events: none;
-  border-radius: var(--border-radius-sm);
+  border-radius: var(--border-radius-md);
 }
 
 /* Color Value Inputs */
@@ -178,7 +174,7 @@
 /* Color Scales */
 .colorPickerContainer {
   display: flex;
-  gap: var(--spacing-lg);
+  gap: var(--spacing-md);
   width: 100%;
 }
 
@@ -190,87 +186,118 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-lg);
+  gap: var(--spacing-md);
 }
 
 .colorScale {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  background: var(--white);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius-lg);
+  border: var(--border-width) solid var(--border-color);
 }
 
 .colorScaleHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: var(--spacing-sm);
 }
 
 .colorScaleTitle {
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 600;
   color: var(--gray-700);
   margin: 0;
 }
 
+.grayScaleSubtitle {
+  font-size: 12px;
+  color: var(--gray-600);
+  font-weight: normal;
+}
+
+.grayScaleControls {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.grayScaleSelect {
+  padding: var(--spacing-xs);
+  border: var(--border-width) solid var(--border-color);
+  border-radius: var(--border-radius-md);
+  font-size: 14px;
+  background: var(--white);
+  color: var(--gray-900);
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+  min-width: 140px;
+}
+
+.grayScaleSelect:focus {
+  outline: none;
+  border-color: var(--gray-400);
+}
+
+.grayScaleSelect:hover {
+  border-color: var(--gray-400);
+}
+
 .colorScaleExportBtn {
   padding: var(--spacing-xs);
-  background: var(--white);
-  color: var(--gray-700);
-  border: var(--border-width) solid var(--border-color);
+  background: var(--gray-900);
+  color: var(--white);
+  border: none;
   border-radius: var(--border-radius-md);
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease;
+  min-width: 70px;
 }
 
 .colorScaleExportBtn:hover {
   background: var(--gray-800);
-  border-color: var(--gray-800);
-  color: var(--white);
 }
 
 .colorScaleGrid {
-  display: flex;
-  flex-direction: row;
-  gap: 8px;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+  gap: var(--spacing-xs);
 }
 
 .colorScaleItem {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  border-radius: var(--border-radius-sm);
-  transition: all 0.2s ease;
-  flex: 1;
-  max-width: 100px;
+  gap: 2px;
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
   cursor: pointer;
+  transition: all 0.2s ease;
+  background: var(--white);
+  min-width: 60px;
 }
 
-.colorScaleItem:hover .colorScaleSwatch {
-  transform: scale(1.02);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.colorScaleItem:active .colorScaleSwatch {
-  transform: scale(1);
+.colorScaleItem:hover {
+  transform: translateY(-2px);
 }
 
 .colorScaleSwatch {
-  width: 100%;
-  aspect-ratio: 1;
-  border-radius: var(--border-radius-md);
-  border: var(--border-width) solid var(--border-color);
-  flex-shrink: 0;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
   position: relative;
+  width: 100%;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: var(--border-radius-md);
+  border: var(--border-width) solid var(--border-color);
 }
 
 .colorScaleLabel {
+  padding: 4px;
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -281,16 +308,15 @@
 .colorScaleLevel {
   font-size: 12px;
   font-weight: 600;
-  color: var(--gray-600);
-  transition: color 0.2s ease;
+  color: var(--gray-800);
+  line-height: 1.3;
 }
 
 .colorScaleHex {
   font-size: 11px;
   font-family: "Monaco", "Consolas", "Courier New", monospace;
-  color: var(--gray-500);
-  text-transform: uppercase;
-  transition: color 0.2s ease;
+  color: var(--gray-600);
+  line-height: 1.3;
 }
 
 .copiedOverlay {
@@ -310,7 +336,6 @@
   letter-spacing: 0.5px;
   padding: 4px 10px;
   animation: fadeInScale 0.2s ease-out;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 @keyframes fadeInScale {
@@ -325,56 +350,21 @@
 }
 
 /* Responsive Design */
-@media (max-width: 1024px) {
-  .colorScalesContainer {
-    display: flex;
-    gap: var(--spacing-lg);
-  }
-
-  .colorScale {
-    flex: 1;
-  }
-
+@media (max-width: 767px) {
   .colorScaleGrid {
-    flex-direction: column;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
     gap: var(--spacing-xs);
-  }
-
-  .colorScaleItem {
-    max-width: none;
-    width: 100%;
-    align-items: stretch;
-    position: relative;
-  }
-
-  .colorScaleSwatch {
-    width: 100%;
-    height: 80px;
-    aspect-ratio: unset;
-  }
-
-  .colorScaleLabel {
-    position: absolute;
-    bottom: var(--spacing-xs);
-    left: var(--spacing-xs);
-    flex-direction: row;
-    gap: var(--spacing-xs);
-    text-align: left;
-    justify-content: flex-start;
-    background: rgba(255, 255, 255, 0.9);
-    padding: 4px 8px;
-    border-radius: var(--border-radius-sm);
-    backdrop-filter: blur(4px);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   }
 
   .colorScaleLevel,
   .colorScaleHex {
-    color: var(--gray-800);
-    font-size: 12px;
+    font-size: 11px;
   }
+}
 
-  .colorScaleLevel {
-    font-weight: 700;
+@media (min-width: 768px) and (max-width: 1119px) {
+  .colorScaleGrid {
+    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+    gap: var(--spacing-xs);
   }
 }

@@ -4,16 +4,12 @@ import styles from "./Modal.module.css";
 
 interface CSSVarsModalProps {
   isOpen: boolean;
-  scaleType: "mixed" | "hsl" | null;
+  scaleType: "mixed" | null;
   selectedColor: string;
   variablePrefix: string;
   onClose: () => void;
   onPrefixChange: (prefix: string) => void;
-  generateCSSVariables: (
-    color: string,
-    scaleType: "mixed" | "hsl",
-    prefix: string
-  ) => string;
+  generateCSSVariables: (color: string, prefix: string) => string;
 }
 
 const CSSVarsModal: React.FC<CSSVarsModalProps> = ({
@@ -26,15 +22,11 @@ const CSSVarsModal: React.FC<CSSVarsModalProps> = ({
   generateCSSVariables,
 }) => {
   const [isCopied, setIsCopied] = useState(false);
-  const timeoutRef = useRef<number | null>(null);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const copyToClipboard = () => {
     if (!scaleType) return;
-    const cssText = generateCSSVariables(
-      selectedColor,
-      scaleType,
-      variablePrefix
-    );
+    const cssText = generateCSSVariables(selectedColor, variablePrefix);
     navigator.clipboard.writeText(cssText);
 
     // Clear any existing timeout
@@ -61,13 +53,9 @@ const CSSVarsModal: React.FC<CSSVarsModalProps> = ({
 
   if (!scaleType) return null;
 
-  const cssText = generateCSSVariables(
-    selectedColor,
-    scaleType,
-    variablePrefix
-  );
+  const cssText = generateCSSVariables(selectedColor, variablePrefix);
 
-  const scaleTitle = scaleType === "mixed" ? "Mixed Scale" : "HSL Scale";
+  const scaleTitle = "Color Scale";
 
   return (
     <Modal

@@ -1,14 +1,14 @@
 import React, { useState, useRef, useEffect } from "react";
 import type { RGB } from "../types";
-import { generateMixedScale, generateHslScale, SCALE_LEVELS } from "../utils";
+import { generateMixedScale, SCALE_LEVELS } from "../utils";
 import styles from "../ColorPicker.module.css";
 
 interface ColorScaleProps {
   title: string;
   baseRgb: RGB;
-  type: "mixed" | "hsl";
+  type: "mixed";
   className?: string;
-  onShowCssVars?: (scaleType: "mixed" | "hsl") => void;
+  onShowCssVars?: (scaleType: "mixed") => void;
 }
 
 const ColorScale: React.FC<ColorScaleProps> = ({
@@ -18,10 +18,9 @@ const ColorScale: React.FC<ColorScaleProps> = ({
   className = "",
   onShowCssVars,
 }) => {
-  const scale =
-    type === "mixed" ? generateMixedScale(baseRgb) : generateHslScale(baseRgb);
+  const scale = generateMixedScale(baseRgb);
   const [copiedColor, setCopiedColor] = useState<string | null>(null);
-  const timeoutRef = useRef<number | null>(null);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const copyToClipboard = async (hexColor: string, level: number) => {
     try {
