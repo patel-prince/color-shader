@@ -87,8 +87,11 @@ export function useUrlParams(): UseUrlParamsReturn {
     const search = current.toString();
     const query = search ? `?${search}` : "";
 
-    return `${window.location.origin}${pathname}${query}`;
-  }, [color, grayScale, pathname]);
+    // Use window.location.href and replace the query params to get the correct full URL
+    // This ensures we get the correct path including /color-shader/ on GitHub Pages
+    const baseUrl = window.location.href.split("?")[0];
+    return `${baseUrl}${query}`;
+  }, [color, grayScale]);
 
   return {
     color,
