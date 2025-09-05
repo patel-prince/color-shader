@@ -1,11 +1,6 @@
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { useCallback, useMemo } from "react";
 
-interface UrlParamsState {
-  color: string;
-  grayScale: string;
-}
-
 interface UseUrlParamsReturn {
   color: string;
   grayScale: string;
