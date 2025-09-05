@@ -7,8 +7,14 @@ import type { RGB } from "../types";
 import { hexToRgb, generateMixedScale } from "../utils";
 import type { SemanticPalette } from "../types";
 
-// Default gray scale color
-const DEFAULT_GRAY = "#6b7280";
+// Gray scale colors (matches GrayScale component)
+const GRAY_SCALES = {
+  slate: "#64748b",
+  zinc: "#71717a",
+  gray: "#6b7280",
+  neutral: "#737373",
+  stone: "#78716c",
+};
 
 /**
  * Calculate relative luminance for WCAG contrast
@@ -49,11 +55,17 @@ function getBestContrast(baseRgb: RGB): string {
 /**
  * Generate complete semantic palette from base color using mixed scale and gray colors
  */
-export function generateSemanticPalette(baseColor: string): SemanticPalette {
+export function generateSemanticPalette(
+  baseColor: string,
+  selectedGrayScale: string = "gray"
+): SemanticPalette {
   const baseRgb = hexToRgb(baseColor);
   const mixedScale = generateMixedScale(baseRgb);
-  // Generate gray scale from the default gray color
-  const grayRgb = hexToRgb(DEFAULT_GRAY);
+  // Generate gray scale from the selected gray color
+  const selectedGrayHex =
+    GRAY_SCALES[selectedGrayScale as keyof typeof GRAY_SCALES] ||
+    GRAY_SCALES.gray;
+  const grayRgb = hexToRgb(selectedGrayHex);
   const grayScale = generateMixedScale(grayRgb);
 
   const palette: SemanticPalette = {

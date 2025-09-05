@@ -10,18 +10,20 @@ import styles from "./SemanticPalette.module.css";
 
 export interface SemanticPaletteProps {
   currentColor: string;
+  selectedGrayScale: string;
   className?: string;
 }
 
 export function SemanticPalette({
   currentColor,
+  selectedGrayScale,
   className,
 }: SemanticPaletteProps) {
-  const { semanticPalette, exportCssVariables, exportTailwindConfig } =
-    useSemanticColors(currentColor);
+  const { semanticPalette } = useSemanticColors(
+    currentColor,
+    selectedGrayScale
+  );
   const [copiedRole, setCopiedRole] = useState<string | null>(null);
-  const [exportFormat, setExportFormat] = useState<"css" | "tailwind">("css");
-  const [variablePrefix, setVariablePrefix] = useState("primary");
 
   const handleColorClick = async (color: string, roleName: string) => {
     // Copy to clipboard only - don't change main color
@@ -34,23 +36,9 @@ export function SemanticPalette({
     }
   };
 
-  const handleExport = async () => {
-    try {
-      const content =
-        exportFormat === "css"
-          ? exportCssVariables(variablePrefix || "color")
-          : exportTailwindConfig();
 
-      await navigator.clipboard.writeText(content);
-      setCopiedRole("export");
-      setTimeout(() => setCopiedRole(null), 2000);
-    } catch (error) {
-      console.warn("Failed to copy export to clipboard:", error);
-    }
-  };
-
-  // Get all role keys in display order
-  const allRoles = [
+  // Categorize roles into Primary and Neutral colors
+  const primaryRoles = [
     "main",
     "hover",
     "active",
@@ -60,11 +48,9 @@ export function SemanticPalette({
     "lighter",
     "dark",
     "darker",
-    "border",
-    "surface",
-    "textPrimary",
-    "textSecondary",
   ];
+
+  const neutralRoles = ["border", "surface", "textPrimary", "textSecondary"];
 
   // Mapping of semantic roles to their shade levels
   const roleToShade: Record<string, string> = {
@@ -86,80 +72,102 @@ export function SemanticPalette({
   return (
     <div className={`${styles.semanticPalette} ${className || ""}`}>
       <div className={styles.header}>
-        <div className={styles.headerLeft}>
-          <h3 className={styles.title}>Design System Colors</h3>
-          <p className={styles.subtitle}>
-            Auto-generated from{" "}
-            <span className={styles.baseColor}>
-              {currentColor.toUpperCase()}
-            </span>
-          </p>
-        </div>
-
-        <div className={styles.headerRight}>
-          <div className={styles.exportControls}>
-            <select
-              value={exportFormat}
-              onChange={(e) =>
-                setExportFormat(e.target.value as "css" | "tailwind")
-              }
-              className={styles.formatSelect}
-            >
-              <option value="css">CSS Variables</option>
-              <option value="tailwind">Tailwind Config</option>
-            </select>
-
-            {exportFormat === "css" && (
-              <input
-                type="text"
-                value={variablePrefix}
-                onChange={(e) => setVariablePrefix(e.target.value)}
-                placeholder="Prefix"
-                className={styles.prefixInput}
-                maxLength={20}
-              />
-            )}
-
-            <button onClick={handleExport} className={styles.exportButton}>
-              {copiedRole === "export" ? "Copied!" : "Export"}
-            </button>
-          </div>
-        </div>
+        <h3 className={styles.title}>Design System Colors</h3>
+        <p className={styles.subtitle}>
+          Auto-generated from{" "}
+          <span className={styles.baseColor}>
+            {currentColor.toUpperCase()}
+          </span>
+        </p>
       </div>
 
-      <div className={styles.colorsGrid}>
-        {allRoles.map((roleKey) => {
-          const role =
-            semanticPalette.roles[
-              roleKey as keyof typeof semanticPalette.roles
-            ];
-          return (
-            <div
-              key={roleKey}
-              className={styles.colorItem}
-              onClick={() => handleColorClick(role.color, roleKey)}
-              title={`${role.name}: ${role.description}\nUsage: ${role.usage}\nClick to copy`}
-            >
-              <div
-                className={styles.colorSwatch}
-                style={{ backgroundColor: role.color }}
-              >
-                {copiedRole === roleKey && (
-                  <div className={styles.copiedOverlay}>Copied</div>
-                )}
-              </div>
-              <div className={styles.colorInfo}>
-                <span className={styles.colorName}>
-                  {role.name} - {roleToShade[roleKey] || "N/A"}
-                </span>
-                <span className={styles.colorCode}>
-                  {role.color.toUpperCase()}
-                </span>
-                <span className={styles.colorUsage}>{role.usage}</span>
-              </div>
-            </div>
-          );
-        })}
+      <div className={styles.categoriesContainer}>
+        {/* Primary Colors */}
+        <div className={styles.categorySection}>
+          <h4 className={styles.categoryTitle}>Primary Colors</h4>
+          <p className={styles.categorySubtitle}>
+            Generated from {currentColor.toUpperCase()}
+          </p>
+          <div className={styles.colorsGrid}>
+            {primaryRoles.map((roleKey) => {
+              const role =
+                semanticPalette.roles[
+                  roleKey as keyof typeof semanticPalette.roles
+                ];
+              return (
+                <div
+                  key={roleKey}
+                  className={styles.colorItem}
+                  onClick={() => handleColorClick(role.color, roleKey)}
+                  title={`${role.name}: ${role.description}\nUsage: ${role.usage}\nClick to copy`}
+                >
+                  <div
+                    className={styles.colorSwatch}
+                    style={{ backgroundColor: role.color }}
+                  >
+                    {copiedRole === roleKey && (
+                      <div className={styles.copiedOverlay}>Copied</div>
+                    )}
+                  </div>
+                  <div className={styles.colorInfo}>
+                    <span className={styles.colorName}>
+                      {role.name} - {roleToShade[roleKey] || "N/A"}
+                    </span>
+                    <span className={styles.colorCode}>
+                      {role.color.toUpperCase()}
+                    </span>
+                    <span className={styles.colorUsage}>{role.usage}</span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Neutral Colors */}
+        <div className={styles.categorySection}>
+          <h4 className={styles.categoryTitle}>Neutral Colors</h4>
+          <p className={styles.categorySubtitle}>
+            UI elements using{" "}
+            {selectedGrayScale.charAt(0).toUpperCase() +
+              selectedGrayScale.slice(1)}{" "}
+            scale
+          </p>
+          <div className={styles.colorsGrid}>
+            {neutralRoles.map((roleKey) => {
+              const role =
+                semanticPalette.roles[
+                  roleKey as keyof typeof semanticPalette.roles
+                ];
+              return (
+                <div
+                  key={roleKey}
+                  className={styles.colorItem}
+                  onClick={() => handleColorClick(role.color, roleKey)}
+                  title={`${role.name}: ${role.description}\nUsage: ${role.usage}\nClick to copy`}
+                >
+                  <div
+                    className={styles.colorSwatch}
+                    style={{ backgroundColor: role.color }}
+                  >
+                    {copiedRole === roleKey && (
+                      <div className={styles.copiedOverlay}>Copied</div>
+                    )}
+                  </div>
+                  <div className={styles.colorInfo}>
+                    <span className={styles.colorName}>
+                      {role.name} - {roleToShade[roleKey] || "N/A"}
+                    </span>
+                    <span className={styles.colorCode}>
+                      {role.color.toUpperCase()}
+                    </span>
+                    <span className={styles.colorUsage}>{role.usage}</span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
       </div>
     </div>
   );

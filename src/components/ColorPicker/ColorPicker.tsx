@@ -91,7 +91,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
         </div>
       </div>
       <div className={styles.colorScalesContainer}>
-        <ColorScale title="Mixed Scale" baseRgb={currentRgb} type="mixed" />
+        <ColorScale title="Color Scale" baseRgb={currentRgb} type="mixed" />
       </div>
     </div>
   );

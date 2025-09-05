@@ -21,6 +21,7 @@
 /* Sidebar */
 .app-sider {
   width: var(--aside-width);
+  min-width: var(--aside-min-width);
   max-width: 100%;
   border-right: var(--border-width) solid var(--border-color);
   padding: var(--spacing-md);
@@ -38,6 +39,38 @@
   font-size: 24px;
   font-weight: 600;
   margin: 0 0 var(--spacing-md) 0;
+}
+
+/* App Content Header */
+.app-content-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-lg);
+}
+
+.app-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--gray-900);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.export-button {
+  background: var(--gray-900);
+  color: var(--white);
+  border: none;
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.export-button:hover {
+  background: var(--gray-800);
 }
 
 /* Sticky sidebar for screens larger than 500px */
@@ -66,11 +99,16 @@
   }
 }
 
-/* Medium screens: Equal width layout for sidebar and content */
+/* Medium screens: Flexible layout with minimum sidebar width */
 @media (min-width: 500px) and (max-width: 768px) {
   .app-sider {
-    width: auto;
+    width: var(--aside-min-width);
+    flex-shrink: 0;
+  }
+
+  .app-content {
     flex: 1;
+    min-width: 0; /* Allow content to shrink */
   }
 }
 
@@ -89,5 +127,30 @@
   .app-content {
     width: 100%;
     flex: 1;
+  }
+
+  /* Responsive header for mobile */
+  .app-content-header {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    align-items: flex-start;
+  }
+
+  .export-button {
+    align-self: stretch;
+    text-align: center;
+  }
+}
+
+/* Large screens: Optimal layout with full sidebar width */
+@media (min-width: 769px) {
+  .app-sider {
+    width: var(--aside-width);
+    flex-shrink: 0;
+  }
+
+  .app-content {
+    flex: 1;
+    min-width: 0;
   }
 }

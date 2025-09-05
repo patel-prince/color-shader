@@ -46,4 +46,5 @@
 
   /* Layout Constants */
   --aside-width: 350px;
+  --aside-min-width: 320px;
 }

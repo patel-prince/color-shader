@@ -55,7 +55,7 @@ const CSSVarsModal: React.FC<CSSVarsModalProps> = ({
 
   const cssText = generateCSSVariables(selectedColor, variablePrefix);
 
-  const scaleTitle = "Mixed Scale";
+  const scaleTitle = "Color Scale";
 
   return (
     <Modal

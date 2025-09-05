@@ -1,17 +1,16 @@
 import { useState, useEffect, useRef } from "react";
 import ColorPicker, { ColorScales } from "./components/ColorPicker";
-import CSSVarsModal from "./components/Modal/CSSVarsModal";
+import SemanticColorsModal from "./components/Modal/SemanticColorsModal";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { HistoryContainer } from "./components/ColorHistory";
 import { SemanticPalette } from "./components/SemanticColors";
 import { useColorHistory } from "./components/ColorPicker/hooks/useColorHistory";
-import { hexToRgb, generateMixedScale } from "./components/ColorPicker/utils";
 
 const App = () => {
   const [selectedColor, setSelectedColor] = useState("#4f39f6");
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalScaleType, setModalScaleType] = useState<"mixed" | null>(null);
-  const [variablePrefix, setVariablePrefix] = useState("primary");
+  const [isSemanticModalOpen, setIsSemanticModalOpen] = useState(false);
+  const [semanticPrefix, setSemanticPrefix] = useState("primary");
+  const [selectedGrayScale, setSelectedGrayScale] = useState<string>("gray");
 
   // History management
   const { addToHistory } = useColorHistory();
@@ -31,7 +30,7 @@ const App = () => {
 
   // Prevent body scrolling when modal is open
   useEffect(() => {
-    if (isModalOpen) {
+    if (isSemanticModalOpen) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "unset";
@@ -41,22 +40,15 @@ const App = () => {
     return () => {
       document.body.style.overflow = "unset";
     };
-  }, [isModalOpen]);
+  }, [isSemanticModalOpen]);
 
-  const handleShowCssVars = (scaleType: "mixed") => {
-    setModalScaleType(scaleType);
-    setIsModalOpen(true);
+  const handleShowSemanticModal = (prefix: string) => {
+    setSemanticPrefix(prefix);
+    setIsSemanticModalOpen(true);
   };
 
-  const generateCssVariables = (color: string, prefix: string) => {
-    const rgb = hexToRgb(color);
-    const finalPrefix = prefix.trim() || "color";
-
-    const mixedScale = generateMixedScale(rgb);
-    const colorVars = Object.entries(mixedScale)
-      .map(([level, hexColor]) => `  --${finalPrefix}-${level}: ${hexColor};`)
-      .join("\n");
-    return `:root {\n${colorVars}\n}`;
+  const handleCloseSemanticModal = () => {
+    setIsSemanticModalOpen(false);
   };
 
   return (
@@ -109,7 +101,16 @@ const App = () => {
         </aside>
 
         <main className="app-content">
-          <h1>Color Scales</h1>
+          <div className="app-content-header">
+            <h1 className="app-title">Design System</h1>
+            <button
+              className="export-button"
+              onClick={() => handleShowSemanticModal("primary")}
+            >
+              Export CSS
+            </button>
+          </div>
+
           <ErrorBoundary
             fallback={
               <div
@@ -125,12 +126,12 @@ const App = () => {
           >
             <ColorScales
               color={selectedColor}
-              onShowCssVars={handleShowCssVars}
+              selectedGrayScale={selectedGrayScale}
+              onGrayScaleChange={setSelectedGrayScale}
             />
           </ErrorBoundary>
 
           <div style={{ marginTop: "var(--spacing-md)" }}>
-            <h1>Design System</h1>
             <ErrorBoundary
               fallback={
                 <div
@@ -140,24 +141,24 @@ const App = () => {
                     color: "#6b7280",
                   }}
                 >
-                  Design system temporarily unavailable
+                  Semantic palette temporarily unavailable
                 </div>
               }
             >
               <SemanticPalette
                 currentColor={selectedColor}
+                selectedGrayScale={selectedGrayScale}
               />
             </ErrorBoundary>
           </div>
         </main>
-        <CSSVarsModal
-          isOpen={isModalOpen}
-          scaleType={modalScaleType}
+        <SemanticColorsModal
+          isOpen={isSemanticModalOpen}
           selectedColor={selectedColor}
-          variablePrefix={variablePrefix}
-          onClose={() => setIsModalOpen(false)}
-          onPrefixChange={setVariablePrefix}
-          generateCSSVariables={generateCssVariables}
+          selectedGrayScale={selectedGrayScale}
+          variablePrefix={semanticPrefix}
+          onClose={handleCloseSemanticModal}
+          onPrefixChange={setSemanticPrefix}
         />
       </div>
     </ErrorBoundary>

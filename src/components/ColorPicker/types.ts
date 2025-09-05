@@ -98,5 +98,4 @@ export interface SemanticPaletteHookReturn {
   semanticPalette: SemanticPalette;
   generatePalette: (baseColor: string) => SemanticPalette;
   exportCssVariables: (prefix?: string) => string;
-  exportTailwindConfig: () => string;
 }
