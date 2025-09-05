@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, Suspense } from "react";
 import ColorPicker, { ColorScales } from "../src/components/ColorPicker";
 import SemanticColorsModal from "../src/components/Modal/SemanticColorsModal";
 import ErrorBoundary from "../src/components/ErrorBoundary";
@@ -10,7 +10,7 @@ import { useColorHistory } from "../src/components/ColorPicker/hooks/useColorHis
 import { useUrlParams } from "../src/hooks/useUrlParams";
 import { Logo } from "../src/components/Logo";
 
-export default function HomePage() {
+function ColorShaderApp() {
   // URL parameter management - URL is the single source of truth
   const {
     color: selectedColor,
@@ -215,5 +215,24 @@ export default function HomePage() {
         />
       </div>
     </ErrorBoundary>
+  );
+}
+
+export default function HomePage() {
+  return (
+    <Suspense fallback={
+      <div style={{ 
+        display: 'flex', 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        height: '100vh',
+        fontSize: '18px',
+        color: '#6b7280'
+      }}>
+        Loading Color Shader...
+      </div>
+    }>
+      <ColorShaderApp />
+    </Suspense>
   );
 }
