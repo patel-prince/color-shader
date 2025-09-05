@@ -47,71 +47,105 @@ export function useSemanticColors(
     const { roles } = semanticPalette;
     const finalPrefix = prefix.trim() || "color";
 
-    const cssVars = Object.entries(roles)
-      .map(([key, role]) => {
-        // Convert camelCase to kebab-case
-        const kebabKey = key.replace(/([A-Z])/g, "-$1").toLowerCase();
+    // Organize variables by category
+    const primaryInteractive: string[] = [];
+    const primaryVariants: string[] = [];
+    const neutralColors: string[] = [];
 
-        // Map semantic roles to their corresponding scale variables
-        let variableReference: string;
+    Object.entries(roles).forEach(([key, role]) => {
+      // Convert camelCase to kebab-case
+      const kebabKey = key.replace(/([A-Z])/g, "-$1").toLowerCase();
 
-        switch (key) {
-          // Primary color scale references
-          case "main":
-            variableReference = `var(--${finalPrefix}-600)`;
-            break;
-          case "hover":
-            variableReference = `var(--${finalPrefix}-500)`;
-            break;
-          case "active":
-            variableReference = `var(--${finalPrefix}-700)`;
-            break;
-          case "disabled":
-            variableReference = `var(--${finalPrefix}-300)`;
-            break;
-          case "light":
-            variableReference = `var(--${finalPrefix}-100)`;
-            break;
-          case "lighter":
-            variableReference = `var(--${finalPrefix}-50)`;
-            break;
-          case "dark":
-            variableReference = `var(--${finalPrefix}-800)`;
-            break;
-          case "darker":
-            variableReference = `var(--${finalPrefix}-900)`;
-            break;
+      // Map semantic roles to their corresponding scale variables
+      let variableReference: string;
+      let variableName: string;
 
-          // Gray scale references for neutral colors
-          case "textPrimary":
-            variableReference = `var(--${selectedGrayScale}-950)`;
-            break;
-          case "textSecondary":
-            variableReference = `var(--${selectedGrayScale}-600)`;
-            break;
-          case "surface":
-            variableReference = `var(--${selectedGrayScale}-50)`;
-            break;
-          case "border":
-            variableReference = `var(--${selectedGrayScale}-200)`;
-            break;
+      switch (key) {
+        // Primary color scale references
+        case "main":
+          variableReference = `var(--${finalPrefix}-600)`;
+          variableName = `${finalPrefix}-${kebabKey}`;
+          primaryInteractive.push(`  --${variableName}: ${variableReference};`);
+          break;
+        case "hover":
+          variableReference = `var(--${finalPrefix}-500)`;
+          variableName = `${finalPrefix}-${kebabKey}`;
+          primaryInteractive.push(`  --${variableName}: ${variableReference};`);
+          break;
+        case "active":
+          variableReference = `var(--${finalPrefix}-700)`;
+          variableName = `${finalPrefix}-${kebabKey}`;
+          primaryInteractive.push(`  --${variableName}: ${variableReference};`);
+          break;
+        case "disabled":
+          variableReference = `var(--${finalPrefix}-300)`;
+          variableName = `${finalPrefix}-${kebabKey}`;
+          primaryInteractive.push(`  --${variableName}: ${variableReference};`);
+          break;
+        case "contrast":
+          variableReference = role.color;
+          variableName = `${finalPrefix}-${kebabKey}`;
+          primaryInteractive.push(`  --${variableName}: ${variableReference};`);
+          break;
 
-          // Special cases that use absolute colors
-          case "contrast":
-            // Keep as hex since it's calculated dynamically (white/black)
-            variableReference = role.color;
-            break;
+        case "light":
+          variableReference = `var(--${finalPrefix}-100)`;
+          variableName = `${finalPrefix}-${kebabKey}`;
+          primaryVariants.push(`  --${variableName}: ${variableReference};`);
+          break;
+        case "lighter":
+          variableReference = `var(--${finalPrefix}-50)`;
+          variableName = `${finalPrefix}-${kebabKey}`;
+          primaryVariants.push(`  --${variableName}: ${variableReference};`);
+          break;
+        case "dark":
+          variableReference = `var(--${finalPrefix}-800)`;
+          variableName = `${finalPrefix}-${kebabKey}`;
+          primaryVariants.push(`  --${variableName}: ${variableReference};`);
+          break;
+        case "darker":
+          variableReference = `var(--${finalPrefix}-900)`;
+          variableName = `${finalPrefix}-${kebabKey}`;
+          primaryVariants.push(`  --${variableName}: ${variableReference};`);
+          break;
 
-          default:
-            // Fallback to hex color if no mapping found
-            variableReference = role.color;
-        }
+        // Gray scale references for neutral colors - use semantic names
+        case "textPrimary":
+          variableReference = `var(--${selectedGrayScale}-950)`;
+          neutralColors.push(`  --text-color: ${variableReference};`);
+          break;
+        case "textSecondary":
+          variableReference = `var(--${selectedGrayScale}-600)`;
+          neutralColors.push(`  --muted-color: ${variableReference};`);
+          break;
+        case "surface":
+          variableReference = `var(--${selectedGrayScale}-50)`;
+          neutralColors.push(`  --surface-color: ${variableReference};`);
+          break;
+        case "surfaceAlt":
+          variableReference = "#ffffff";
+          neutralColors.push(`  --surface-alt-color: ${variableReference};`);
+          break;
+        case "border":
+          variableReference = `var(--${selectedGrayScale}-200)`;
+          neutralColors.push(`  --border-color: ${variableReference};`);
+          break;
+      }
+    });
 
-        return `  --${finalPrefix}-${kebabKey}: ${variableReference};`;
-      })
-      .join("\n");
+    // Combine organized sections
+    const organizedCss = [
+      "  /* Primary Interactive Colors */",
+      ...primaryInteractive,
+      "",
+      "  /* Primary Variants */",
+      ...primaryVariants,
+      "",
+      "  /* Neutral Colors */",
+      ...neutralColors,
+    ].join("\n");
 
-    return `:root {\n${cssVars}\n}`;
+    return `:root {\n${organizedCss}\n}`;
   };
 
   return {

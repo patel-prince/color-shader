@@ -152,9 +152,15 @@ export function generateSemanticPalette(
       },
       surface: {
         name: "Surface",
-        description: "Surface background (Gray 50)",
+        description: "Primary surface (Gray 50)",
         color: grayScale[50], // Very light gray surface
-        usage: "Card backgrounds, panels",
+        usage: "Main backgrounds, page background",
+      },
+      surfaceAlt: {
+        name: "Surface Alt",
+        description: "Secondary surface (White)",
+        color: "#ffffff", // Pure white for elevated surfaces
+        usage: "Cards, panels, elevated backgrounds",
       },
     },
   };

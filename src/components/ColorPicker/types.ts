@@ -91,6 +91,7 @@ export interface SemanticPalette {
     // Borders & Surfaces
     border: SemanticColorRole;
     surface: SemanticColorRole;
+    surfaceAlt: SemanticColorRole;
   };
 }
 

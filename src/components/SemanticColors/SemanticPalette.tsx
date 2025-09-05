@@ -36,7 +36,6 @@ export function SemanticPalette({
     }
   };
 
-
   // Categorize roles into Primary and Neutral colors
   const primaryRoles = [
     "main",
@@ -50,7 +49,13 @@ export function SemanticPalette({
     "darker",
   ];
 
-  const neutralRoles = ["border", "surface", "textPrimary", "textSecondary"];
+  const neutralRoles = [
+    "border",
+    "surface",
+    "surfaceAlt",
+    "textPrimary",
+    "textSecondary",
+  ];
 
   // Mapping of semantic roles to their shade levels
   const roleToShade: Record<string, string> = {
@@ -67,6 +72,7 @@ export function SemanticPalette({
     textSecondary: "600",
     border: "200",
     surface: "50",
+    surfaceAlt: "White",
   };
 
   return (
@@ -75,9 +81,7 @@ export function SemanticPalette({
         <h3 className={styles.title}>Design System Colors</h3>
         <p className={styles.subtitle}>
           Auto-generated from{" "}
-          <span className={styles.baseColor}>
-            {currentColor.toUpperCase()}
-          </span>
+          <span className={styles.baseColor}>{currentColor.toUpperCase()}</span>
         </p>
       </div>
 
@@ -139,6 +143,8 @@ export function SemanticPalette({
                 semanticPalette.roles[
                   roleKey as keyof typeof semanticPalette.roles
                 ];
+              if (!role) return null;
+
               return (
                 <div
                   key={roleKey}
