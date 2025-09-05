@@ -220,18 +220,22 @@ function ColorShaderApp() {
 
 export default function HomePage() {
   return (
-    <Suspense fallback={
-      <div style={{ 
-        display: 'flex', 
-        justifyContent: 'center', 
-        alignItems: 'center', 
-        height: '100vh',
-        fontSize: '18px',
-        color: '#6b7280'
-      }}>
-        Loading Color Shader...
-      </div>
-    }>
+    <Suspense
+      fallback={
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100vh",
+            fontSize: "18px",
+            color: "#6b7280",
+          }}
+        >
+          Loading Color Shader...
+        </div>
+      }
+    >
       <ColorShaderApp />
     </Suspense>
   );
