@@ -36,7 +36,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--spacing-lg);
+  padding: var(--spacing-md);
   border-bottom: var(--border-width) solid var(--border-color);
 }
 
@@ -71,7 +71,7 @@
 
 /* Modal Body */
 .body {
-  padding: var(--spacing-lg);
+  padding: var(--spacing-md);
   flex: 1;
   overflow: hidden;
   display: flex;
@@ -84,6 +84,7 @@
   display: flex;
   align-items: end;
   gap: var(--spacing-md);
+  flex-wrap: wrap;
 }
 
 .prefixInputContainer {
@@ -131,6 +132,30 @@
 
 .copyBtn:hover {
   background: var(--gray-800);
+}
+
+/* Responsive styles for small screens */
+@media (max-width: 480px) {
+  .actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--spacing-sm);
+  }
+
+  .copyBtn {
+    width: 100%;
+    min-width: auto;
+  }
+
+  .content {
+    width: 95vw;
+    max-height: 85vh;
+  }
+
+  .header,
+  .body {
+    padding: var(--spacing-sm);
+  }
 }
 
 /* CSS Code Display */

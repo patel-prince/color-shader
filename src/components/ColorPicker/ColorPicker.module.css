@@ -174,7 +174,7 @@
 /* Color Scales */
 .colorPickerContainer {
   display: flex;
-  gap: var(--spacing-lg);
+  gap: var(--spacing-md);
   width: 100%;
 }
 
@@ -186,14 +186,14 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-lg);
+  gap: var(--spacing-md);
 }
 
 .colorScale {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-lg);
+  gap: var(--spacing-md);
   background: var(--white);
   padding: var(--spacing-md);
   border-radius: var(--border-radius-lg);

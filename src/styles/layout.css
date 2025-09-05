@@ -38,7 +38,6 @@
   color: var(--gray-800);
   font-size: 24px;
   font-weight: 600;
-  margin: 0 0 var(--spacing-md) 0;
 }
 
 /* App Content Header */
@@ -46,7 +45,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
 }
 
 .app-title {
@@ -127,13 +126,6 @@
   .app-content {
     width: 100%;
     flex: 1;
-  }
-
-  /* Responsive header for mobile */
-  .app-content-header {
-    flex-direction: column;
-    gap: var(--spacing-sm);
-    align-items: flex-start;
   }
 
   .export-button {
