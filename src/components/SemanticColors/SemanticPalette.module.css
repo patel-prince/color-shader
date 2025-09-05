@@ -7,7 +7,7 @@
 .semanticPalette {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-lg);
+  gap: var(--spacing-md);
   background: var(--white);
   border-radius: var(--border-radius-lg);
   border: var(--border-width) solid var(--border-color);

@@ -148,7 +148,7 @@
 @media (min-width: 768px) {
   /* Desktop: Compact spacing */
   .desktopContainer {
-    gap: var(--spacing-lg);
+    gap: var(--spacing-md);
     padding-bottom: var(--spacing-sm);
   }
 
