@@ -16,6 +16,13 @@ dist-ssr
 .next/
 out/
 
+# Docs folder - keep static assets but ignore dev files
+docs/cache/
+docs/trace
+docs/types/
+docs/server/interception-route-rewrite-manifest.js
+docs/server/middleware-manifest.json
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
