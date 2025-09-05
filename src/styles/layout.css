@@ -56,6 +56,30 @@
   line-height: 1.2;
 }
 
+.header-actions {
+  display: flex;
+  gap: var(--spacing-xs);
+  align-items: center;
+}
+
+.share-button {
+  background: var(--white);
+  color: var(--gray-700);
+  border: var(--border-width) solid var(--border-color);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.share-button:hover {
+  background: var(--gray-50);
+  border-color: var(--gray-300);
+  color: var(--gray-900);
+}
+
 .export-button {
   background: var(--gray-900);
   color: var(--white);
@@ -128,8 +152,15 @@
     flex: 1;
   }
 
+  .header-actions {
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    width: 100%;
+  }
+
+  .share-button,
   .export-button {
-    align-self: stretch;
+    width: 100%;
     text-align: center;
   }
 }

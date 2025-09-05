@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { useState, useEffect, useRef } from "react";
 import ColorPicker, { ColorScales } from "../src/components/ColorPicker";
@@ -7,13 +7,21 @@ import ErrorBoundary from "../src/components/ErrorBoundary";
 import { HistoryContainer } from "../src/components/ColorHistory";
 import { SemanticPalette } from "../src/components/SemanticColors";
 import { useColorHistory } from "../src/components/ColorPicker/hooks/useColorHistory";
+import { useUrlParams } from "../src/hooks/useUrlParams";
 import { Logo } from "../src/components/Logo";
 
 export default function HomePage() {
-  const [selectedColor, setSelectedColor] = useState("#4f39f6");
+  // URL parameter management - URL is the single source of truth
+  const {
+    color: selectedColor,
+    grayScale: selectedGrayScale,
+    updateColor,
+    updateGrayScale,
+    getShareableUrl,
+  } = useUrlParams();
+
   const [isSemanticModalOpen, setIsSemanticModalOpen] = useState(false);
   const [semanticPrefix, setSemanticPrefix] = useState("primary");
-  const [selectedGrayScale, setSelectedGrayScale] = useState<string>("gray");
 
   // History management
   const { addToHistory } = useColorHistory();
@@ -48,19 +56,43 @@ export default function HomePage() {
   const handleShowSemanticModal = (prefix: string) => {
     setSemanticPrefix(prefix);
     setIsSemanticModalOpen(true);
-    
+
     // Track Export CSS button click
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('event', 'export_css_clicked', {
-        event_category: 'engagement',
-        event_label: 'export_button',
-        value: 1
+    if (typeof window !== "undefined" && window.gtag) {
+      window.gtag("event", "export_css_clicked", {
+        event_category: "engagement",
+        event_label: "export_button",
+        value: 1,
       });
     }
   };
 
   const handleCloseSemanticModal = () => {
     setIsSemanticModalOpen(false);
+  };
+
+  const handleCopyLink = async () => {
+    try {
+      const shareableUrl = getShareableUrl();
+      await navigator.clipboard.writeText(shareableUrl);
+
+      // Track share link click
+      if (typeof window !== "undefined" && window.gtag) {
+        window.gtag("event", "share_link_clicked", {
+          event_category: "engagement",
+          event_label: "share_button",
+          value: 1,
+        });
+      }
+
+      // TODO: Add a toast notification for success
+      console.log("Link copied to clipboard!");
+    } catch (err) {
+      console.error("Failed to copy link:", err);
+      // Fallback for browsers that don't support clipboard API
+      const shareableUrl = getShareableUrl();
+      prompt("Copy this link:", shareableUrl);
+    }
   };
 
   return (
@@ -82,7 +114,7 @@ export default function HomePage() {
           >
             <ColorPicker
               color={selectedColor}
-              onChange={setSelectedColor}
+              onChange={updateColor}
               showScales={false}
             />
           </ErrorBoundary>
@@ -105,7 +137,7 @@ export default function HomePage() {
             >
               <HistoryContainer
                 currentColor={selectedColor}
-                onColorSelect={setSelectedColor}
+                onColorSelect={updateColor}
                 isSidebarView={true}
               />
             </ErrorBoundary>
@@ -115,12 +147,21 @@ export default function HomePage() {
         <main className="app-content">
           <div className="app-content-header">
             <Logo size="lg" className="app-title" />
-            <button
-              className="export-button"
-              onClick={() => handleShowSemanticModal("primary")}
-            >
-              Export CSS
-            </button>
+            <div className="header-actions">
+              <button
+                className="share-button"
+                onClick={handleCopyLink}
+                title="Copy shareable link"
+              >
+                Share Link
+              </button>
+              <button
+                className="export-button"
+                onClick={() => handleShowSemanticModal("primary")}
+              >
+                Export CSS
+              </button>
+            </div>
           </div>
 
           <ErrorBoundary
@@ -139,7 +180,7 @@ export default function HomePage() {
             <ColorScales
               color={selectedColor}
               selectedGrayScale={selectedGrayScale}
-              onGrayScaleChange={setSelectedGrayScale}
+              onGrayScaleChange={updateGrayScale}
             />
           </ErrorBoundary>
 
