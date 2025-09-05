@@ -39,7 +39,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
     // Log error details in development
-    if (import.meta.env.DEV) {
+    if (process.env.NODE_ENV === 'development') {
       console.error("ErrorBoundary caught an error:", error, errorInfo);
     }
 
@@ -112,7 +112,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
           >
             Try Again
           </button>
-          {import.meta.env.DEV && this.state.error && (
+          {process.env.NODE_ENV === 'development' && this.state.error && (
             <details
               style={{
                 marginTop: "1rem",
