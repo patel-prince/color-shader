@@ -1,0 +1,230 @@
+/*!********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[10].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[10].use[3]!./src/styles/globals.css ***!
+  \********************************************************************************************************************************************************************************************************************************************************************/
+/**
+ * Global Styles
+ * Contains global resets, fonts, and base styles
+ */
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
+/* Box sizing reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Base body styles */
+body {
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+/*!**************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[10].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[10].use[3]!./src/styles/design-system.css ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************/
+/**
+ * Design System - CSS Custom Properties
+ * Contains all design tokens used throughout the application
+ */
+
+:root {
+  /* Color Palette */
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+  --gray-600: #4b5563;
+  --gray-700: #374151;
+  --gray-800: #1f2937;
+  --gray-900: #111827;
+  --gray-950: #030712;
+
+  --white: #ffffff;
+  --black: #000000;
+
+  /* Semantic Colors */
+  --primary-main: var(--gray-900);
+
+  /* Spacing Scale */
+  --spacing-none: 0;
+  --spacing-xs: 8px;
+  --spacing-sm: 16px;
+  --spacing-md: 24px;
+  --spacing-lg: 32px;
+  --spacing-xl: 40px;
+  --spacing-xxl: 48px;
+
+  /* Border Radius Scale */
+  --border-radius-none: 0;
+  --border-radius-sm: 4px;
+  --border-radius-md: 4px;
+  --border-radius-lg: 6px;
+  --border-radius-xl: 8px;
+  --border-radius-full: 9999px;
+
+  /* Border Properties */
+  --border-color: var(--gray-200);
+  --border-width: 1px;
+
+  /* Layout Constants */
+  --aside-width: 350px;
+  --aside-min-width: 320px;
+}
+
+/*!*******************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[10].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[10].use[3]!./src/styles/layout.css ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************/
+/**
+ * Layout Styles
+ * Contains app-level layout and responsive design rules
+ */
+
+/* App Container */
+.app-container {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+}
+
+/* History Section in Sidebar - for all screen sizes */
+.sidebar-history-section {
+  margin-top: var(--spacing-sm);
+  flex-shrink: 0;
+  min-height: 0; /* Allow section to shrink if needed */
+}
+
+/* Sidebar */
+.app-sider {
+  width: var(--aside-width);
+  min-width: var(--aside-min-width);
+  max-width: 100%;
+  border-right: var(--border-width) solid var(--border-color);
+  padding: var(--spacing-md);
+}
+
+/* Content Area */
+.app-content {
+  flex: 1 1;
+  padding: var(--spacing-md);
+  background-color: var(--gray-50);
+}
+
+.app-content h1 {
+  color: var(--gray-800);
+  font-size: 24px;
+  font-weight: 600;
+}
+
+/* App Content Header */
+.app-content-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-md);
+}
+
+.app-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--gray-900);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.export-button {
+  background: var(--gray-900);
+  color: var(--white);
+  border: none;
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.export-button:hover {
+  background: var(--gray-800);
+}
+
+/* Sticky sidebar for screens larger than 500px */
+@media (min-width: 500px) {
+  .app-sider {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/* Ensure proper height behavior for different screen sizes */
+@media (min-width: 500px) {
+  .app-content {
+    min-height: 100vh;
+  }
+}
+
+@media (max-width: 499px) {
+  .app-content {
+    min-height: auto;
+  }
+}
+
+/* Medium screens: Flexible layout with minimum sidebar width */
+@media (min-width: 500px) and (max-width: 768px) {
+  .app-sider {
+    width: var(--aside-min-width);
+    flex-shrink: 0;
+  }
+
+  .app-content {
+    flex: 1 1;
+    min-width: 0; /* Allow content to shrink */
+  }
+}
+
+/* Small screens: Stack layout with full width sidebar */
+@media (max-width: 499px) {
+  .app-container {
+    flex-direction: column;
+  }
+
+  .app-sider {
+    width: 100%;
+    border-right: none;
+    border-bottom: var(--border-width) solid var(--border-color);
+  }
+
+  .app-content {
+    width: 100%;
+    flex: 1 1;
+  }
+
+  .export-button {
+    align-self: stretch;
+    text-align: center;
+  }
+}
+
+/* Large screens: Optimal layout with full sidebar width */
+@media (min-width: 769px) {
+  .app-sider {
+    width: var(--aside-width);
+    flex-shrink: 0;
+  }
+
+  .app-content {
+    flex: 1 1;
+    min-width: 0;
+  }
+}
+
