@@ -3,19 +3,14 @@ import ColorPicker, { ColorScales } from "./components/ColorPicker";
 import CSSVarsModal from "./components/Modal/CSSVarsModal";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { HistoryContainer } from "./components/ColorHistory";
+import { SemanticPalette } from "./components/SemanticColors";
 import { useColorHistory } from "./components/ColorPicker/hooks/useColorHistory";
-import {
-  hexToRgb,
-  generateMixedScale,
-  generateHslScale,
-} from "./components/ColorPicker/utils";
+import { hexToRgb, generateMixedScale } from "./components/ColorPicker/utils";
 
 const App = () => {
   const [selectedColor, setSelectedColor] = useState("#4f39f6");
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalScaleType, setModalScaleType] = useState<"mixed" | "hsl" | null>(
-    null
-  );
+  const [modalScaleType, setModalScaleType] = useState<"mixed" | null>(null);
   const [variablePrefix, setVariablePrefix] = useState("primary");
 
   // History management
@@ -48,32 +43,20 @@ const App = () => {
     };
   }, [isModalOpen]);
 
-  const handleShowCssVars = (scaleType: "mixed" | "hsl") => {
+  const handleShowCssVars = (scaleType: "mixed") => {
     setModalScaleType(scaleType);
     setIsModalOpen(true);
   };
 
-  const generateCssVariables = (
-    color: string,
-    scaleType: "mixed" | "hsl",
-    prefix: string
-  ) => {
+  const generateCssVariables = (color: string, prefix: string) => {
     const rgb = hexToRgb(color);
     const finalPrefix = prefix.trim() || "color";
 
-    if (scaleType === "mixed") {
-      const mixedScale = generateMixedScale(rgb);
-      const colorVars = Object.entries(mixedScale)
-        .map(([level, hexColor]) => `  --${finalPrefix}-${level}: ${hexColor};`)
-        .join("\n");
-      return `:root {\n${colorVars}\n}`;
-    } else {
-      const hslScale = generateHslScale(rgb);
-      const colorVars = Object.entries(hslScale)
-        .map(([level, hexColor]) => `  --${finalPrefix}-${level}: ${hexColor};`)
-        .join("\n");
-      return `:root {\n${colorVars}\n}`;
-    }
+    const mixedScale = generateMixedScale(rgb);
+    const colorVars = Object.entries(mixedScale)
+      .map(([level, hexColor]) => `  --${finalPrefix}-${level}: ${hexColor};`)
+      .join("\n");
+    return `:root {\n${colorVars}\n}`;
   };
 
   return (
@@ -145,6 +128,27 @@ const App = () => {
               onShowCssVars={handleShowCssVars}
             />
           </ErrorBoundary>
+
+          <div style={{ marginTop: "var(--spacing-md)" }}>
+            <h1>Design System</h1>
+            <ErrorBoundary
+              fallback={
+                <div
+                  style={{
+                    padding: "2rem",
+                    textAlign: "center",
+                    color: "#6b7280",
+                  }}
+                >
+                  Design system temporarily unavailable
+                </div>
+              }
+            >
+              <SemanticPalette
+                currentColor={selectedColor}
+              />
+            </ErrorBoundary>
+          </div>
         </main>
         <CSSVarsModal
           isOpen={isModalOpen}

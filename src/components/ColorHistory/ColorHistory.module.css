@@ -30,7 +30,7 @@
 .clearButton {
   padding: 4px var(--spacing-xs);
   border: var(--border-width) solid var(--border-color);
-  border-radius: var(--border-radius-sm);
+  border-radius: var(--border-radius-md);
   background: var(--white);
   color: var(--gray-600);
   font-size: 10px;

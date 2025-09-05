@@ -113,7 +113,7 @@
   color: var(--gray-500);
   background: var(--gray-200);
   padding: 1px 4px;
-  border-radius: var(--border-radius-sm);
+  border-radius: var(--border-radius-md);
   font-weight: 500;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }

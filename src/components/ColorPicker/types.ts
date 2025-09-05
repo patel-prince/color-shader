@@ -59,3 +59,44 @@ export interface ColorHistoryHookReturn {
   clearHistory: () => void;
   isFavorite: (hex: string) => boolean;
 }
+
+// Semantic Color System interfaces
+export interface SemanticColorRole {
+  name: string;
+  description: string;
+  color: string;
+  usage: string;
+}
+
+export interface SemanticPalette {
+  baseColor: string;
+  roles: {
+    // Interactive States
+    main: SemanticColorRole;
+    hover: SemanticColorRole;
+    active: SemanticColorRole;
+    disabled: SemanticColorRole;
+
+    // Contrast & Text
+    contrast: SemanticColorRole;
+    textPrimary: SemanticColorRole;
+    textSecondary: SemanticColorRole;
+
+    // Design System Variants
+    light: SemanticColorRole;
+    lighter: SemanticColorRole;
+    dark: SemanticColorRole;
+    darker: SemanticColorRole;
+
+    // Borders & Surfaces
+    border: SemanticColorRole;
+    surface: SemanticColorRole;
+  };
+}
+
+export interface SemanticPaletteHookReturn {
+  semanticPalette: SemanticPalette;
+  generatePalette: (baseColor: string) => SemanticPalette;
+  exportCssVariables: (prefix?: string) => string;
+  exportTailwindConfig: () => string;
+}
