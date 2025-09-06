@@ -1,0 +1,71 @@
+/* Hue Slider */
+.hue-slider {
+  position: relative;
+  width: 100%;
+  height: 20px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+}
+
+.hue-slider:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+}
+
+.hue-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    #ff0000 0%,
+    #ffff00 16.67%,
+    #00ff00 33.33%,
+    #00ffff 50%,
+    #0000ff 66.67%,
+    #ff00ff 83.33%,
+    #ff0000 100%
+  );
+}
+
+.hue-handle {
+  position: absolute;
+  top: 50%;
+  width: 4px;
+  height: calc(100% + 4px);
+  background-color: var(--color-white);
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: var(--radius-sm);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hue-slider {
+    height: 24px;
+  }
+
+  .hue-handle {
+    width: 6px;
+    height: calc(100% + 6px);
+  }
+}
+
+@media (max-width: 480px) {
+  .hue-slider {
+    height: 28px;
+  }
+
+  .hue-handle {
+    width: 8px;
+    height: calc(100% + 8px);
+  }
+}

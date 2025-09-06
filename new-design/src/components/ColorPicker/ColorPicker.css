@@ -1,0 +1,166 @@
+/* Color Picker Styles */
+.color-picker {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Visual Picker Section */
+.visual-picker-section {
+  display: flex;
+  gap: var(--spacing-4);
+  align-items: flex-start;
+}
+
+.visual-picker-section .saturation-picker {
+  flex: 1;
+  min-width: 0;
+}
+
+.visual-picker-section .hue-slider {
+  width: 24px;
+  height: auto;
+  min-height: 200px;
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+}
+
+/* Color Preview Section */
+.color-preview-section {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+  padding: var(--spacing-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-background);
+}
+
+.color-preview {
+  width: 80px;
+  height: 80px;
+  border-radius: var(--radius-base);
+  border: 2px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  flex-shrink: 0;
+}
+
+.color-info {
+  flex: 1;
+}
+
+.color-title {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--spacing-1) 0;
+}
+
+.color-hex {
+  font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-secondary);
+  margin: 0;
+  letter-spacing: 0.05em;
+}
+
+/* Color Inputs Section */
+.color-inputs-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+}
+
+.input-label {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.color-input {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-base);
+  padding: var(--spacing-2) var(--spacing-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-base);
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  transition: all var(--transition-fast);
+}
+
+.color-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+}
+
+.color-input:hover {
+  border-color: var(--color-text-muted);
+}
+
+/* RGB and HSL Input Groups */
+.rgb-inputs,
+.hsl-inputs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .color-picker {
+    max-width: 100%;
+    gap: var(--spacing-4);
+  }
+
+  .color-preview-section {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--spacing-3);
+  }
+
+  .color-preview {
+    width: 120px;
+    height: 120px;
+  }
+
+  .color-hex {
+    font-size: var(--font-size-lg);
+  }
+
+  .rgb-inputs,
+  .hsl-inputs {
+    gap: var(--spacing-2);
+  }
+
+  .color-input {
+    padding: var(--spacing-2);
+    font-size: var(--font-size-sm);
+  }
+}
+
+@media (max-width: 480px) {
+  .color-preview {
+    width: 100px;
+    height: 100px;
+  }
+
+  .rgb-inputs,
+  .hsl-inputs {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-2);
+  }
+}

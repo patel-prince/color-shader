@@ -1,0 +1,13 @@
+/* Color Scales Container */
+.color-scales-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .color-scales-container {
+    gap: var(--spacing-4);
+  }
+}

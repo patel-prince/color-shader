@@ -1,0 +1,1 @@
+export { SemanticPalette } from "./SemanticPalette";

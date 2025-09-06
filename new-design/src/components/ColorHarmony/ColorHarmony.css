@@ -1,0 +1,307 @@
+/* Color Harmony Component */
+.color-harmony {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+  background-color: var(--color-background-hover);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-6);
+}
+
+.harmony-header {
+  text-align: center;
+}
+
+.harmony-title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--spacing-2) 0;
+}
+
+.harmony-subtitle {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.harmony-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--spacing-4);
+  flex-wrap: wrap;
+}
+
+.harmony-types {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-2);
+  flex: 1;
+}
+
+.harmony-type-button {
+  padding: var(--spacing-2) var(--spacing-4);
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-base);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.harmony-type-button:hover {
+  color: var(--color-text-primary);
+  border-color: var(--color-primary);
+}
+
+.harmony-type-button.active {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border-color: var(--color-primary);
+}
+
+.copy-palette-button {
+  padding: var(--spacing-2) var(--spacing-4);
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-base);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.copy-palette-button:hover {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border-color: var(--color-primary);
+}
+
+.harmony-description {
+  padding: var(--spacing-4);
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-base);
+  text-align: center;
+}
+
+.harmony-description p {
+  margin: 0;
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+}
+
+.harmony-colors {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-4);
+}
+
+.harmony-color-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  padding: var(--spacing-4);
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-base);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.harmony-color-item:hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+  transform: translateY(-2px);
+}
+
+.harmony-color-item.base-color {
+  border-color: var(--color-primary);
+  background-color: rgba(59, 130, 246, 0.05);
+}
+
+.harmony-color-swatch {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-base);
+  border: 1px solid var(--color-border);
+  flex-shrink: 0;
+  box-shadow: var(--shadow-sm);
+}
+
+.harmony-color-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.harmony-color-name {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.harmony-color-hex {
+  font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.harmony-color-angle {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.harmony-visualization {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-4);
+  padding: var(--spacing-6);
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-base);
+}
+
+.color-wheel {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-full);
+  background: conic-gradient(
+    from 0deg,
+    #ff0000 0deg,
+    #ffff00 60deg,
+    #00ff00 120deg,
+    #00ffff 180deg,
+    #0000ff 240deg,
+    #ff00ff 300deg,
+    #ff0000 360deg
+  );
+}
+
+.wheel-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  background-color: var(--color-background);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.base-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: var(--radius-full);
+  border: 2px solid var(--color-white);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);
+}
+
+.wheel-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  border-radius: var(--radius-full);
+  border: 2px solid var(--color-white);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);
+  transform-origin: center;
+}
+
+.wheel-caption {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  margin: 0;
+  text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .color-harmony {
+    padding: var(--spacing-4);
+    gap: var(--spacing-4);
+  }
+
+  .harmony-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .harmony-types {
+    justify-content: center;
+  }
+
+  .harmony-type-button {
+    flex: 1;
+    text-align: center;
+    min-width: 0;
+  }
+
+  .copy-palette-button {
+    align-self: center;
+  }
+
+  .harmony-colors {
+    grid-template-columns: 1fr;
+  }
+
+  .color-wheel {
+    width: 100px;
+    height: 100px;
+  }
+
+  .wheel-center {
+    width: 32px;
+    height: 32px;
+  }
+
+  .base-dot {
+    width: 12px;
+    height: 12px;
+  }
+
+  .wheel-dot {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .harmony-types {
+    flex-direction: column;
+  }
+
+  .harmony-color-item {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--spacing-2);
+  }
+
+  .harmony-color-swatch {
+    width: 40px;
+    height: 40px;
+  }
+
+  .harmony-visualization {
+    padding: var(--spacing-4);
+  }
+}

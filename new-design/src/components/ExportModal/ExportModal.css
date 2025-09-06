@@ -1,0 +1,251 @@
+/* Export Modal Styles */
+.export-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: var(--spacing-4);
+}
+
+.export-modal {
+  background-color: var(--color-background);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  max-width: 800px;
+  width: 100%;
+  max-height: 90vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.export-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-6);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.export-modal-title {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.export-modal-close {
+  background: none;
+  border: none;
+  font-size: var(--font-size-3xl);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  padding: var(--spacing-2);
+  line-height: 1;
+  transition: color var(--transition-fast);
+}
+
+.export-modal-close:hover {
+  color: var(--color-text-primary);
+}
+
+.export-modal-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--color-border);
+  background-color: var(--color-background-hover);
+}
+
+.export-tab {
+  flex: 1;
+  padding: var(--spacing-4) var(--spacing-6);
+  background: none;
+  border: none;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border-bottom: 2px solid transparent;
+}
+
+.export-tab:hover {
+  color: var(--color-text-primary);
+  background-color: var(--color-background);
+}
+
+.export-tab.active {
+  color: var(--color-primary);
+  background-color: var(--color-background);
+  border-bottom-color: var(--color-primary);
+}
+
+.export-modal-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--spacing-6);
+}
+
+.export-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.export-section-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.export-section-header h3 {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.export-description {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.copy-button {
+  align-self: flex-start;
+  padding: var(--spacing-2) var(--spacing-4);
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border: none;
+  border-radius: var(--radius-base);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  margin-top: var(--spacing-2);
+}
+
+.copy-button:hover {
+  background-color: var(--color-slate-800);
+  transform: translateY(-1px);
+}
+
+.copy-button.copied {
+  background-color: #22c55e;
+  transform: scale(0.95);
+}
+
+.export-code {
+  background-color: var(--color-background-hover);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-base);
+  padding: var(--spacing-4);
+  overflow-x: auto;
+  font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.export-code code {
+  background: none;
+  padding: 0;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+.export-modal-footer {
+  padding: var(--spacing-6);
+  border-top: 1px solid var(--color-border);
+  background-color: var(--color-background-hover);
+}
+
+.export-usage-info h4 {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--spacing-3) 0;
+}
+
+.export-usage-info ul {
+  margin: 0;
+  padding-left: var(--spacing-5);
+  color: var(--color-text-secondary);
+}
+
+.export-usage-info li {
+  margin-bottom: var(--spacing-1);
+  line-height: var(--line-height-normal);
+}
+
+.export-usage-info code {
+  background-color: var(--color-background);
+  padding: var(--spacing-1) var(--spacing-2);
+  border-radius: var(--radius-sm);
+  font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
+  font-size: var(--font-size-sm);
+  color: var(--color-primary);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .export-modal-overlay {
+    padding: var(--spacing-2);
+  }
+
+  .export-modal {
+    max-height: 95vh;
+  }
+
+  .export-modal-header {
+    padding: var(--spacing-4);
+  }
+
+  .export-modal-title {
+    font-size: var(--font-size-xl);
+  }
+
+  .export-tab {
+    padding: var(--spacing-3) var(--spacing-4);
+    font-size: var(--font-size-sm);
+  }
+
+  .export-modal-content {
+    padding: var(--spacing-4);
+  }
+
+  .export-modal-footer {
+    padding: var(--spacing-4);
+  }
+
+  .export-code {
+    font-size: 12px;
+    padding: var(--spacing-3);
+  }
+}
+
+@media (max-width: 480px) {
+  .export-modal-tabs {
+    flex-direction: column;
+  }
+
+  .export-tab {
+    text-align: center;
+  }
+
+  .export-section-header {
+    text-align: center;
+  }
+
+  .copy-button {
+    align-self: center;
+  }
+}
