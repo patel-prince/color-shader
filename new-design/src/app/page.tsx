@@ -14,7 +14,7 @@ export default function Home() {
 
       {/* Main Content */}
       <main>
-        <Container size="lg">
+        <Container>
           <section className="hero-section section-xl">
             <Logo size={64} />
             <h1 className="hero-title">

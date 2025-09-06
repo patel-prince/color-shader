@@ -1,0 +1,82 @@
+/* Tool Page Styles */
+.tool-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+  text-align: center;
+  padding: var(--spacing-20) 0;
+}
+
+.tool-title {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-extrabold);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-tight);
+  margin: 0;
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+.tool-description {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+  max-width: 700px;
+  line-height: var(--line-height-relaxed);
+  margin: 0 auto;
+}
+
+.tool-placeholder {
+  background-color: var(--color-slate-50);
+  border: 2px dashed var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-12);
+  margin-top: var(--spacing-8);
+  text-align: left;
+}
+
+.tool-placeholder p {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--spacing-4) 0;
+}
+
+.tool-placeholder p:first-child {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  text-align: center;
+  margin-bottom: var(--spacing-6);
+}
+
+.tool-placeholder ul {
+  list-style-type: disc;
+  padding-left: var(--spacing-6);
+  margin: var(--spacing-4) 0 0 0;
+}
+
+.tool-placeholder li {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-2);
+  line-height: var(--line-height-relaxed);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .tool-section {
+    padding: var(--spacing-16) 0;
+  }
+
+  .tool-title {
+    font-size: var(--font-size-3xl);
+  }
+
+  .tool-description {
+    font-size: var(--font-size-base);
+  }
+
+  .tool-placeholder {
+    padding: var(--spacing-8);
+    margin-top: var(--spacing-6);
+  }
+}

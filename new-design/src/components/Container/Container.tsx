@@ -8,10 +8,11 @@ interface ContainerProps {
 
 export default function Container({
   children,
-  size = "lg",
+  size,
   className = "",
 }: ContainerProps) {
+  const sizeClass = size ? `container-${size}` : "";
   return (
-    <div className={`container container-${size} ${className}`}>{children}</div>
+    <div className={`container ${sizeClass} ${className}`}>{children}</div>
   );
 }

@@ -7,25 +7,25 @@
 
 /* Logo Text Styles */
 .logo-text {
-  font-family: var(--font-montserrat), sans-serif;
-  color: #0f172a; /* Slate 900 */
-  letter-spacing: -0.02em;
+  font-family: var(--font-family-primary);
+  color: var(--color-text-primary);
+  letter-spacing: var(--letter-spacing-tight);
 }
 
 /* Logo Text Sizes */
 .logo-text-sm {
-  font-size: 16px;
-  font-weight: 700;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
 }
 
 .logo-text-md {
-  font-size: 20px;
-  font-weight: 700;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
 }
 
 .logo-text-lg {
-  font-size: 24px;
-  font-weight: 800;
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-extrabold);
 }
 
 /* Dynamic sizes for custom numbers */

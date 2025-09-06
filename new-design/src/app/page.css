@@ -14,43 +14,43 @@
 }
 
 .hero-title {
-  font-family: var(--font-montserrat), sans-serif;
-  font-size: 48px;
-  font-weight: 800;
-  color: #0f172a; /* Slate 900 */
-  line-height: 1.1;
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-5xl);
+  font-weight: var(--font-weight-extrabold);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-tight);
   margin: 0;
   max-width: 800px;
-  letter-spacing: -0.02em;
+  letter-spacing: var(--letter-spacing-tight);
 }
 
 .hero-description {
-  font-size: 18px;
-  color: #64748b; /* Slate 600 */
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
   max-width: 700px;
-  line-height: 1.6;
+  line-height: var(--line-height-relaxed);
   margin: 0;
 }
 
 /* Responsive Typography */
 @media (max-width: 768px) {
   .hero-title {
-    font-size: 36px;
-    line-height: 1.2;
+    font-size: var(--font-size-4xl);
+    line-height: var(--line-height-normal);
   }
 
   .hero-description {
-    font-size: 16px;
+    font-size: var(--font-size-base);
     max-width: 90%;
   }
 }
 
 @media (max-width: 480px) {
   .hero-title {
-    font-size: 28px;
+    font-size: var(--font-size-3xl);
   }
 
   .hero-description {
-    font-size: 14px;
+    font-size: var(--font-size-sm);
   }
 }

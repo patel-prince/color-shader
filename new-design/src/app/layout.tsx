@@ -137,9 +137,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="manifest" href="/manifest.json" />
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" href="/icon-192.png" />
         <meta name="theme-color" content="#0f172a" />
         <script
           type="application/ld+json"
