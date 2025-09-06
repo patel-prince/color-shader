@@ -177,3 +177,112 @@
     min-width: 0;
   }
 }
+
+/* SEO Content Section */
+.seo-content-section {
+  margin-top: var(--spacing-xl);
+  padding-top: var(--spacing-lg);
+  border-top: var(--border-width) solid var(--border-color);
+}
+
+.seo-content-card {
+  background: var(--white);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-lg);
+  border: var(--border-width) solid var(--border-color);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.seo-content-card h2 {
+  color: var(--gray-900);
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0 0 var(--spacing-md) 0;
+  line-height: 1.3;
+}
+
+.seo-content-card > p {
+  color: var(--gray-700);
+  font-size: 18px;
+  line-height: 1.6;
+  margin: 0 0 var(--spacing-lg) 0;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.feature-item {
+  padding: var(--spacing-md);
+  border: var(--border-width) solid var(--gray-200);
+  border-radius: var(--border-radius-md);
+  background: var(--gray-50);
+}
+
+.feature-item h3 {
+  color: var(--gray-900);
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 var(--spacing-xs) 0;
+  line-height: 1.4;
+}
+
+.feature-item p {
+  color: var(--gray-600);
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.use-cases {
+  background: var(--gray-50);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-md);
+  border: var(--border-width) solid var(--gray-200);
+}
+
+.use-cases h3 {
+  color: var(--gray-900);
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 var(--spacing-sm) 0;
+}
+
+.use-cases ul {
+  margin: 0;
+  padding-left: var(--spacing-md);
+  color: var(--gray-700);
+}
+
+.use-cases li {
+  margin-bottom: var(--spacing-xs);
+  line-height: 1.5;
+}
+
+.use-cases strong {
+  color: var(--gray-900);
+  font-weight: 600;
+}
+
+/* Mobile responsiveness for SEO content */
+@media (max-width: 768px) {
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-sm);
+  }
+  
+  .seo-content-card {
+    padding: var(--spacing-md);
+  }
+  
+  .seo-content-card h2 {
+    font-size: 24px;
+  }
+  
+  .seo-content-card > p {
+    font-size: 16px;
+  }
+}

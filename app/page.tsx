@@ -204,6 +204,60 @@ function ColorShaderApp() {
               />
             </ErrorBoundary>
           </div>
+
+          {/* SEO Content Section */}
+          <section className="seo-content-section">
+            <div className="seo-content-card">
+              <h2>Professional Color Picker & Design System Generator</h2>
+              <p>
+                Create stunning color palettes and comprehensive design systems with our advanced color picker tool. 
+                Generate CSS variables, semantic color tokens, and export complete design systems for your web projects.
+              </p>
+              
+              <div className="features-grid">
+                <div className="feature-item">
+                  <h3>🎨 Advanced Color Picker</h3>
+                  <p>Pick colors with precision using our professional-grade color picker with HSL, RGB, and HEX support.</p>
+                </div>
+                
+                <div className="feature-item">
+                  <h3>🎯 Semantic Color System</h3>
+                  <p>Generate semantic color roles (primary, secondary, surface, text) that follow design system best practices.</p>
+                </div>
+                
+                <div className="feature-item">
+                  <h3>📊 Color Scale Generation</h3>
+                  <p>Automatically generate 50-950 color scales from any base color, perfect for modern design systems.</p>
+                </div>
+                
+                <div className="feature-item">
+                  <h3>💾 CSS Variable Export</h3>
+                  <p>Export your color system as CSS custom properties, ready to use in your projects.</p>
+                </div>
+                
+                <div className="feature-item">
+                  <h3>🔗 Shareable Color Palettes</h3>
+                  <p>Share your color combinations with team members using shareable URLs.</p>
+                </div>
+                
+                <div className="feature-item">
+                  <h3>📱 Responsive Design</h3>
+                  <p>Works perfectly on desktop, tablet, and mobile devices for design on-the-go.</p>
+                </div>
+              </div>
+              
+              <div className="use-cases">
+                <h3>Perfect for:</h3>
+                <ul>
+                  <li><strong>Web Designers</strong> - Create consistent color schemes for websites</li>
+                  <li><strong>UI/UX Designers</strong> - Build comprehensive design systems</li>
+                  <li><strong>Frontend Developers</strong> - Generate CSS variables and design tokens</li>
+                  <li><strong>Design Teams</strong> - Collaborate on color palettes and share designs</li>
+                  <li><strong>Brand Designers</strong> - Develop brand color guidelines and variations</li>
+                </ul>
+              </div>
+            </div>
+          </section>
         </main>
         <SemanticColorsModal
           isOpen={isSemanticModalOpen}
