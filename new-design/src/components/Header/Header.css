@@ -1,0 +1,43 @@
+/* Header Styles */
+.header {
+  border-bottom: 1px solid #e2e8f0; /* Slate 200 */
+  background-color: #ffffff;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+/* Navigation Styles */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.nav-link {
+  font-family: var(--font-montserrat), sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  color: #64748b; /* Slate 500 */
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+  color: #0f172a; /* Slate 900 */
+}
+
+/* Logo Link - Remove underline */
+.header-container a {
+  text-decoration: none;
+}

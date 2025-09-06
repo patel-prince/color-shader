@@ -1,0 +1,19 @@
+.section-sm {
+  padding-top: 32px;
+  padding-bottom: 32px;
+}
+
+.section-md {
+  padding-top: 48px;
+  padding-bottom: 48px;
+}
+
+.section-lg {
+  padding-top: 64px;
+  padding-bottom: 64px;
+}
+
+.section-xl {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}

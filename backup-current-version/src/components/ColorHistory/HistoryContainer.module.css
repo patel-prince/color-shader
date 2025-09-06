@@ -1,0 +1,162 @@
+/**
+ * HistoryContainer Component Styles
+ * Responsive container for history and favorites
+ */
+
+/* Desktop Container */
+.desktopContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+  height: 100%;
+  overflow-y: auto;
+}
+
+/* Sidebar Container */
+.sidebarContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+/* Collapsible Sections (Mobile/Tablet) */
+.collapsibleSections {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.section {
+  border: var(--border-width) solid var(--border-color);
+  border-radius: var(--border-radius-lg);
+  background: var(--white);
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.section:hover {
+  border-color: var(--gray-300);
+}
+
+/* Accordion slide animation */
+.section summary {
+  list-style: none;
+}
+
+.section summary::-webkit-details-marker {
+  display: none;
+}
+
+.section .sectionContent {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    padding 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  padding: 0 var(--spacing-xs);
+}
+
+.section[open] .sectionContent {
+  max-height: 500px; /* Optimized for typical content height */
+  opacity: 1;
+  padding: var(--spacing-xs);
+  transition-delay: 0s, 0s, 0.1s; /* Delay opacity slightly for elegant reveal */
+}
+
+/* Smooth arrow rotation with accordion state */
+.section[open] .sectionHeader {
+  background: var(--gray-50);
+}
+
+.section[open] .sectionHeader::before {
+  transform: rotate(90deg);
+  color: var(--gray-700);
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background: var(--gray-50);
+  border-bottom: var(--border-width) solid var(--border-color);
+  cursor: pointer;
+  user-select: none;
+  font-weight: 500;
+  color: var(--gray-800);
+  font-size: 12px;
+  transition: background-color 0.2s ease;
+  list-style: none;
+}
+
+.sectionHeader::before {
+  content: "▶";
+  font-size: 12px;
+  color: var(--gray-500);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s ease;
+  margin-right: var(--spacing-xs);
+  transform-origin: center;
+}
+
+.sectionHeader:hover {
+  background: var(--gray-100);
+}
+
+.sectionTitle {
+  font-weight: 600;
+  color: var(--gray-800);
+}
+
+.sectionCount {
+  font-size: 10px;
+  color: var(--gray-500);
+  background: var(--gray-200);
+  padding: 1px 4px;
+  border-radius: var(--border-radius-md);
+  font-weight: 500;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sectionHeader:hover .sectionCount {
+  background: var(--gray-300);
+  color: var(--gray-700);
+}
+
+/* Remove default margins from nested components in sidebar view */
+.sidebarContainer .sectionContent > * {
+  margin: 0;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 767px) {
+  /* Mobile: Compact collapsible sections */
+  .sectionHeader {
+    padding: var(--spacing-xs);
+    font-size: 12px;
+  }
+
+  .section .sectionContent {
+    padding: 0 var(--spacing-xs);
+  }
+
+  .section[open] .sectionContent {
+    padding: var(--spacing-xs);
+  }
+}
+
+@media (min-width: 768px) {
+  /* Desktop: Compact spacing */
+  .desktopContainer {
+    gap: var(--spacing-md);
+    padding-bottom: var(--spacing-sm);
+  }
+
+  .section .sectionContent {
+    padding: 0 var(--spacing-xs);
+  }
+
+  .section[open] .sectionContent {
+    padding: var(--spacing-xs);
+  }
+}

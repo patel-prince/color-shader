@@ -1,0 +1,56 @@
+/* Homepage Styles */
+.page-container {
+  min-height: 100vh;
+}
+
+.hero-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 64px); /* Subtract header height */
+  flex-direction: column;
+  gap: 24px;
+  text-align: center;
+}
+
+.hero-title {
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 48px;
+  font-weight: 800;
+  color: #0f172a; /* Slate 900 */
+  line-height: 1.1;
+  margin: 0;
+  max-width: 800px;
+  letter-spacing: -0.02em;
+}
+
+.hero-description {
+  font-size: 18px;
+  color: #64748b; /* Slate 600 */
+  max-width: 700px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Responsive Typography */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 36px;
+    line-height: 1.2;
+  }
+
+  .hero-description {
+    font-size: 16px;
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 28px;
+  }
+
+  .hero-description {
+    font-size: 14px;
+  }
+}

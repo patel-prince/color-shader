@@ -1,0 +1,26 @@
+{
+  "name": "ColorKit - Professional Color Picker & Design System Generator",
+  "short_name": "ColorKit",
+  "description": "Create beautiful color palettes, generate CSS variables, export Tailwind configs, and build complete design systems for your web projects.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0f172a",
+  "orientation": "portrait-primary",
+  "categories": ["design", "productivity", "utilities"],
+  "lang": "en-US",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

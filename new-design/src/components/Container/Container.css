@@ -1,0 +1,21 @@
+.container {
+  margin: 0 auto;
+  padding: 0 24px;
+  width: 100%;
+}
+
+.container-sm {
+  max-width: 640px;
+}
+
+.container-md {
+  max-width: 768px;
+}
+
+.container-lg {
+  max-width: 1024px;
+}
+
+.container-xl {
+  max-width: 1200px;
+}

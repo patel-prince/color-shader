@@ -1,0 +1,48 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Next.js build artifacts
+.next/
+out/
+
+# Docs folder - keep static assets but ignore dev files
+docs/cache/
+docs/trace
+docs/types/
+docs/server/interception-route-rewrite-manifest.js
+docs/server/middleware-manifest.json
+
+# Build artifacts that change between builds
+docs/app-build-manifest.json
+docs/build-manifest.json
+docs/package.json
+docs/prerender-manifest.json
+docs/react-loadable-manifest.json
+docs/routes-manifest.json
+docs/server/
+docs/static/
+
+# Next.js build hashes (change on every build)
+docs/_next/static/*/
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
