@@ -7,7 +7,7 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/color-shader' : '',
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/color-shader/' : '',
   basePath: process.env.NODE_ENV === 'production' ? '/color-shader' : '',
 }
 
