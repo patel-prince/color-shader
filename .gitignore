@@ -34,7 +34,7 @@ docs/server/
 docs/static/
 
 # Next.js build hashes (change on every build)
-docs/_next/static/*/
+# docs/_next/static/*/ - COMMENTED OUT for GitHub Pages deployment
 
 # Editor directories and files
 .vscode/*
