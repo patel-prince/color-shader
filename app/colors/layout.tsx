@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const metadata: Metadata = {
   title: "Color Palette - 275 Professional Colors",
   description:

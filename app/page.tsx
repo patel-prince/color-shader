@@ -8,7 +8,6 @@ import { HistoryContainer } from "../src/components/ColorHistory";
 import { SemanticPalette } from "../src/components/SemanticColors";
 import { useColorHistory } from "../src/components/ColorPicker/hooks/useColorHistory";
 import { useUrlParams } from "../src/hooks/useUrlParams";
-import { Logo } from "../src/components/Logo";
 import { Header } from "../src/components/Header";
 
 function ColorShaderApp() {
