@@ -3,10 +3,18 @@
  * Contains app-level layout and responsive design rules
  */
 
-/* App Container */
-.app-container {
+/* App Layout - Main wrapper with header */
+.app-layout {
   width: 100%;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* App Container - Sidebar and content area */
+.app-container {
+  width: 100%;
+  flex: 1;
   margin: 0;
   display: flex;
 }
@@ -40,26 +48,13 @@
   font-weight: 600;
 }
 
-/* App Content Header */
-.app-content-header {
+/* Content Actions */
+.content-actions {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: var(--spacing-md);
-}
-
-.app-title {
-  font-size: 24px;
-  font-weight: 600;
-  color: var(--gray-900);
-  margin: 0;
-  line-height: 1.2;
-}
-
-.header-actions {
-  display: flex;
+  justify-content: flex-end;
   gap: var(--spacing-xs);
   align-items: center;
+  margin-bottom: var(--spacing-md);
 }
 
 .share-button {
@@ -101,7 +96,7 @@
   .app-sider {
     position: sticky;
     top: 0;
-    height: 100vh;
+    height: calc(100vh - 60px); /* Subtract header height */
     overflow-y: auto;
     box-sizing: border-box;
     display: flex;
@@ -112,7 +107,7 @@
 /* Ensure proper height behavior for different screen sizes */
 @media (min-width: 500px) {
   .app-content {
-    min-height: 100vh;
+    min-height: calc(100vh - 60px); /* Subtract header height */
   }
 }
 
@@ -152,7 +147,7 @@
     flex: 1;
   }
 
-  .header-actions {
+  .content-actions {
     flex-direction: column;
     gap: var(--spacing-xs);
     width: 100%;
@@ -273,15 +268,15 @@
     grid-template-columns: 1fr;
     gap: var(--spacing-sm);
   }
-  
+
   .seo-content-card {
     padding: var(--spacing-md);
   }
-  
+
   .seo-content-card h2 {
     font-size: 24px;
   }
-  
+
   .seo-content-card > p {
     font-size: 16px;
   }
