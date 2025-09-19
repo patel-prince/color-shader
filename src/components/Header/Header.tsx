@@ -13,7 +13,7 @@ export function Header({ className = "" }: HeaderProps) {
   const pathname = usePathname();
 
   const navigation = [
-    { name: "Colors", href: "/colors" },
+    { name: "Colors", href: "/colors/" },
     { name: "Color Picker", href: "/" },
   ];
 
