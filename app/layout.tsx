@@ -11,32 +11,17 @@ export const metadata: Metadata = {
     template: "%s | Color Shader",
   },
   description:
-    "Create beautiful color palettes and design systems with our professional color picker tool. Generate CSS variables, semantic colors, and export complete design systems for your projects.",
+    "Advanced color picker tool for creating stunning color palettes and complete design systems. Generate CSS variables, semantic colors, and build cohesive color schemes for your web projects.",
   keywords: [
     "color picker",
-    "design system generator",
-    "color palette creator",
-    "CSS variables generator",
-    "color tool online",
-    "web design colors",
-    "UI design system",
-    "color generator tool",
-    "semantic colors",
-    "design tokens",
-    "color scheme generator",
+    "professional color picker",
     "hex color picker",
-    "rgb color picker",
-    "hsl color picker",
-    "color scale generator",
+    "design system generator",
+    "CSS variables generator",
+    "color palette creator",
+    "semantic colors",
     "brand colors",
     "color accessibility",
-    "design system colors",
-    "color picker tool",
-    "professional color picker",
-    "color palette tool",
-    "css color variables",
-    "design system builder",
-    "color harmony",
     "color theory tool",
   ],
   authors: [{ name: "Color Shader" }],
@@ -127,15 +112,17 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "SoftwareApplication",
               name: "Color Shader",
-              alternateName: "Professional Color Picker & Design System Generator",
+              alternateName:
+                "Professional Color Picker & Design System Generator",
               description:
                 "Advanced color picker tool for creating professional color palettes and design systems. Generate CSS variables, semantic colors, and export complete design systems for web projects.",
               applicationCategory: "DesignApplication",
               operatingSystem: "Web Browser",
-              browserRequirements: "Requires JavaScript. Supports Chrome, Firefox, Safari, Edge.",
+              browserRequirements:
+                "Requires JavaScript. Supports Chrome, Firefox, Safari, Edge.",
               softwareVersion: "1.0",
               datePublished: "2024-09-05",
-              dateModified: "2025-09-06",
+              dateModified: "2024-12-19",
               inLanguage: "en-US",
               isAccessibleForFree: true,
               offers: {
@@ -156,17 +143,16 @@ export default function RootLayout({
                 "Shareable color palettes",
                 "Responsive design for all devices",
                 "Real-time color preview",
-                "Design system best practices"
+                "Design system best practices",
               ],
-              screenshot: "https://patel-prince.github.io/color-shader/og-image.png",
+              screenshot:
+                "https://patel-prince.github.io/color-shader/og-image.png",
               url: "https://patel-prince.github.io/color-shader/",
-              sameAs: [
-                "https://github.com/patel-prince/color-shader"
-              ]
+              sameAs: ["https://github.com/patel-prince/color-shader"],
             }),
           }}
         />
-        
+
         {/* Google Analytics */}
         <script
           async
